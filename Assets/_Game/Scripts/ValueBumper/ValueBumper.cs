@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
-using DG.Tweening.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +39,6 @@ public class MeshMaterialData
             default:
                 throw new ArgumentOutOfRangeException(nameof(effect), effect, null);
         }
-        
     }
 }
 
@@ -83,12 +81,12 @@ public class ValueBumper : MonoBehaviour
 
     private void OnEnable()
     {
-        ValueActor_Value.OnValueBump += OnValueBump;
+        ValueActor_Value.OnHitValueBumper += OnValueBump;
     }
 
     private void OnDisable()
     {
-        ValueActor_Value.OnValueBump -= OnValueBump;
+        ValueActor_Value.OnHitValueBumper -= OnValueBump;
     }
 
     private void UpdateBumpEffectText()

@@ -107,7 +107,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5617512265193849801}
-  m_Father: {fileID: 2739794881800549670}
+  m_Father: {fileID: 1583542135113507765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -279,6 +279,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 183
+--- !u!1 &4510859791755610924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583542135113507765}
+  m_Layer: 0
+  m_Name: ScaleController_Canvas_Value
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1583542135113507765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510859791755610924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5704804516550421838}
+  m_Father: {fileID: 2739794881800549670}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6163049168302694835
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +644,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1654564467999385148}
-  - {fileID: 5704804516550421838}
+  - {fileID: 1583542135113507765}
   - {fileID: 7723740648771633403}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -660,7 +692,7 @@ MonoBehaviour:
     AddEffectMaterial: {fileID: 2100000, guid: 48ca2f649806f418ebdfcf68557976c6, type: 2}
     MultiplyEffectMaterial: {fileID: 2100000, guid: 49054dc15918147beb5b4aa56ce6136a, type: 2}
   m_fakeLightImage: {fileID: 2752608478194011956}
-  m_addEffectColor: {r: 1, g: 0.8880079, b: 0.21226418, a: 1}
+  m_addEffectColor: {r: 0.2117647, g: 1, b: 0.99186414, a: 1}
   m_multiplyEffectColor: {r: 1, g: 0.28773582, b: 0.9769494, a: 1}
   m_bumpEffectText: {fileID: 90117954289908711}
   m_bumperVisual: {fileID: 1654564467999385148}

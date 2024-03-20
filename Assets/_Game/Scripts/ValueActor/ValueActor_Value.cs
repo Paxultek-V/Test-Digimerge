@@ -6,28 +6,30 @@ using Random = UnityEngine.Random;
 
 public class ValueActor_Value : MonoBehaviour
 {
-    public static Action<ValueBumper> OnValueBump;
+    public static Action<ValueBumper> OnHitValueBumper;
+    public static Action<PlatformValue, float> OnHitPlatformValue;
+    public static Action<ValueBonus, float> OnHitValueBonus;
     public Action<int> OnSendValueLength;
-    
+
     [SerializeField] private Rigidbody m_body = null;
 
-    [SerializeField] private float m_force = 1f;
-    
     [SerializeField] private float m_minRotationForce = -150f;
     [SerializeField] private float m_maxRotationForce = 150f;
-    
+
     [SerializeField] private TMP_Text m_text = null;
 
     [SerializeField] private Transform m_valueVisual = null;
 
-    
+
     private Tweener m_tweener;
     private ValueBumper m_valueBumperBuffer;
+    private PlatformValue m_platformValueBuffer;
+    private ValueBonus m_valueBonusBuffer;
     private float m_value;
     private readonly float m_collisionCooldownDuration = 0.1f;
     private float m_collisionCooldownTimer;
     private bool m_isInCooldownCollision;
-    
+
     private void OnEnable()
     {
         Spawner.OnSpawnValue += OnSpawnValue;
@@ -55,20 +57,62 @@ public class ValueActor_Value : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(m_isInCooldownCollision)
+        if (m_isInCooldownCollision)
             return;
-        
+
+        ManageInteractionWithValueBumper(other);
+        ManageInteractionWithPlatformValue(other);
+        ManageInteractionWithValueBonus(other);
+    }
+
+    private void ManageInteractionWithValueBonus(Collision other)
+    {
+        m_valueBonusBuffer = other.collider.gameObject.GetComponentInParent<ValueBonus>();
+
+        if (m_valueBonusBuffer == null)
+            return;
+
+        OnHitValueBonus?.Invoke(m_valueBonusBuffer, m_value);
+
+        m_isInCooldownCollision = true;
+
+        m_valueBonusBuffer = null;
+    }
+
+    private void ManageInteractionWithPlatformValue(Collision other)
+    {
+        m_platformValueBuffer = other.collider.gameObject.GetComponentInParent<PlatformValue>();
+
+        if (m_platformValueBuffer == null)
+            return;
+
+        OnHitPlatformValue?.Invoke(m_platformValueBuffer, m_value);
+
+        m_isInCooldownCollision = true;
+
+        m_platformValueBuffer = null;
+
+        Kill();
+    }
+
+    private void Kill()
+    {
+        Destroy(gameObject);
+    }
+
+    private void ManageInteractionWithValueBumper(Collision other)
+    {
         m_valueBumperBuffer = other.collider.gameObject.GetComponent<ValueBumper>();
-        
-        if(m_valueBumperBuffer == null)
+
+        if (m_valueBumperBuffer == null)
             return;
 
         ApplyBumperEffect(m_valueBumperBuffer.BumpEffect);
 
-        OnValueBump?.Invoke(m_valueBumperBuffer);
+        OnHitValueBumper?.Invoke(m_valueBumperBuffer);
 
         m_isInCooldownCollision = true;
-        
+
         m_valueBumperBuffer = null;
     }
 
@@ -85,25 +129,26 @@ public class ValueActor_Value : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
+
         m_valueVisual.localScale = Vector3.one;
-        
-        if(m_tweener != null && m_tweener.IsPlaying())
+
+        if (m_tweener != null && m_tweener.IsPlaying())
             return;
-        
+
         m_tweener = m_valueVisual.DOPunchScale(Vector3.one, 0.33f, 1);
     }
 
-    private void OnSpawnValue(ValueActor_Value actorValue, Vector3 ejectionDirection, float value, float ejectionStrength)
+    private void OnSpawnValue(ValueActor_Value actorValue, Vector3 ejectionDirection, float value,
+        float ejectionStrength)
     {
-        if(actorValue != this)
+        if (actorValue != this)
             return;
-        
+
         SetValue(value);
 
         AddForce(ejectionDirection, ejectionStrength);
     }
-    
+
 
     private void AddForce(Vector3 direction, float strength)
     {

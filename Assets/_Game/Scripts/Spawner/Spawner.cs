@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public enum SpawnerType
@@ -9,26 +11,25 @@ public enum SpawnerType
 
 public class Spawner : MonoBehaviour
 {
-    public static System.Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
+    public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
 
+    [Header("Parameters")]
     [SerializeField] private SpawnerType m_spawnerType;
-
-    [SerializeField] private ValueActor_Value m_valuePrefab = null;
-
-    [SerializeField] private GameObject m_spawnPosition = null;
-
     [SerializeField] private float m_maxEjectionStrength = 250f;
-
-    [SerializeField] private Transform m_valuesParent = null;
-
     [SerializeField] private float m_initialValue = 1f;
+    [SerializeField] private float m_initialSpawnSpeed = 1f;
 
-    [SerializeField] private float m_spawnSpeed = 1f;
+    [Header("References")]
+    [SerializeField] private ValueActor_Value m_valuePrefab = null;
+    [SerializeField] private GameObject m_spawnPosition = null;
+    [SerializeField] private Transform m_valuesParent = null;
+    [SerializeField] private TMP_Text m_initialValueText = null;
 
 
     private ValueActor_Value m_valueBuffer;
     private float m_spawnTimer;
-
+    private float m_currentSpawnSpeed;
+    private float m_currentValueToSpawn;
     private bool m_isContinuousSpawningEnabled;
     private bool m_isInCooldown;
 
@@ -46,6 +47,8 @@ public class Spawner : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        ValueBonus.OnGrantBonus += OnGrantBonus;
     }
 
     private void OnDisable()
@@ -62,11 +65,15 @@ public class Spawner : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        ValueBonus.OnGrantBonus -= OnGrantBonus;
     }
 
     private void Start()
     {
         m_isInCooldown = false;
+        m_currentSpawnSpeed = m_initialSpawnSpeed;
+        UpdateSpawnValue(m_initialValue);
     }
 
     private void Update()
@@ -74,7 +81,7 @@ public class Spawner : MonoBehaviour
         if (m_isInCooldown)
         {
             m_spawnTimer += Time.deltaTime;
-            if (m_spawnTimer > 1 / m_spawnSpeed)
+            if (m_spawnTimer > 1 / m_currentSpawnSpeed)
                 m_isInCooldown = false;
             return;
         }
@@ -85,6 +92,40 @@ public class Spawner : MonoBehaviour
         SpawnValue(1f);
         m_isInCooldown = true;
         m_spawnTimer = 0f;
+    }
+
+    private void OnGrantBonus(BonusType type, float value, float duration)
+    {
+        StartCoroutine(BonusCoroutine(type, value, duration));
+    }
+
+    private IEnumerator BonusCoroutine(BonusType type, float value, float duration)
+    {
+        switch (type)
+        {
+            case BonusType.SpawnFrequency:
+                m_currentSpawnSpeed += value;
+                break;
+            case BonusType.BoostInitialValue:
+                UpdateSpawnValue(m_currentValueToSpawn + value);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        switch (type)
+        {
+            case BonusType.SpawnFrequency:
+                m_currentSpawnSpeed -= value;
+                break;
+            case BonusType.BoostInitialValue:
+                UpdateSpawnValue(m_currentValueToSpawn - value);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
     }
 
     private void StartSpawning(Vector3 cursorPosition)
@@ -103,6 +144,11 @@ public class Spawner : MonoBehaviour
         SpawnValue(chargeProgression);
     }
 
+    private void UpdateSpawnValue(float newValue)
+    {
+        m_currentValueToSpawn = newValue;
+        m_initialValueText.text = "$" + m_currentValueToSpawn.ToString("F0");
+    }
 
     private void SpawnValue(float chargeProgression)
     {
