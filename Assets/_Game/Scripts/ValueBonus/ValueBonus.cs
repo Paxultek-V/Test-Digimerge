@@ -13,6 +13,7 @@ public enum BonusType
 [ExecuteAlways]
 public class ValueBonus : MonoBehaviour
 {
+    public Action OnBonusKilled;
     public static Action<BonusType, float, float> OnGrantBonus;
 
     [SerializeField] private BonusType m_type;
@@ -93,6 +94,7 @@ public class ValueBonus : MonoBehaviour
 
     private void Kill()
     {
+        OnBonusKilled?.Invoke();
         Destroy(gameObject);
     }
 

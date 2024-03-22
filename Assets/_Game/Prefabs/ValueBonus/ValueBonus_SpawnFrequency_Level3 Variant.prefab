@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 14964958920753813, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_Name
-      value: ValueBonus_SpawnFrequency Variant
+      value: ValueBonus_SpawnFrequency_Level3 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 533609467271515645, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_IsActive
@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 55b12a79fe17b4754b3f8565ab1e4f31, type: 2}
+    - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_health
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_bonusValue
       value: 5

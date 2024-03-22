@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class ValueActor_Value : MonoBehaviour
 {
     public static Action<ValueBumper> OnHitValueBumper;
+    public static Action<NegativeValueBumper> OnHitNegativeValueBumper;
     public static Action<PlatformValue, float> OnHitPlatformValue;
     public static Action<ValueBonus, float> OnHitValueBonus;
     public static Action<Vector3, float> OnHitSplitter;
@@ -24,6 +25,8 @@ public class ValueActor_Value : MonoBehaviour
 
     private Tweener m_tweener;
     private ValueBumper m_valueBumperBuffer;
+    private NegativeValueBumper m_negativeBumperBuffer;
+    private BlackHole m_blackHoleBuffer;
     private PlatformValue m_platformValueBuffer;
     private ValueBonus m_valueBonusBuffer;
     private Splitter m_splitterBuffer;
@@ -34,14 +37,12 @@ public class ValueActor_Value : MonoBehaviour
 
     private void OnEnable()
     {
-        Spawner.OnSpawnValue += OnSpawnValue;
-        //Manager_Level.OnStartLoadingNextLevel += Kill;
+        Spawner_ValueActor.OnSpawnValue += OnSpawnValue;
     }
 
     private void OnDisable()
     {
-        Spawner.OnSpawnValue -= OnSpawnValue;
-        //Manager_Level.OnStartLoadingNextLevel -= Kill;
+        Spawner_ValueActor.OnSpawnValue -= OnSpawnValue;
     }
 
 
@@ -59,6 +60,7 @@ public class ValueActor_Value : MonoBehaviour
         }
     }
 
+    #region Interactions
     private void OnCollisionEnter(Collision other)
     {
         if (m_isInCooldownCollision)
@@ -69,6 +71,40 @@ public class ValueActor_Value : MonoBehaviour
         ManageInteractionWithPlatformValue(other);
         ManageInteractionWithValueBonus(other);
         ManageInteractionWithSplitter(other);
+        ManageInteractionWithBlackHole(other);
+        ManageInteractionWithNegativeValueBumper(other);
+    }
+
+    private void ManageInteractionWithNegativeValueBumper(Collision other)
+    {
+        if (m_value <= 1f)
+            return;
+
+        m_negativeBumperBuffer = other.collider.gameObject.GetComponent<NegativeValueBumper>();
+
+        if (m_negativeBumperBuffer == null)
+            return;
+
+        ApplyBumperEffect(m_negativeBumperBuffer.BumpEffect);
+
+        m_isInCooldownCollision = true;
+
+        OnHitNegativeValueBumper?.Invoke(m_negativeBumperBuffer);
+
+        m_negativeBumperBuffer = null;
+    }
+
+    private void ManageInteractionWithBlackHole(Collision other)
+    {
+        m_blackHoleBuffer = other.collider.gameObject.GetComponent<BlackHole>();
+
+        if (m_blackHoleBuffer == null)
+            return;
+
+        m_body.isKinematic = true;
+
+        m_valueVisual.DOScale(Vector3.one * 0.4f, 1f);
+        m_body.transform.DOMove(other.gameObject.transform.position, 1f).OnComplete(Kill);
     }
 
     private void ManageInteractionWithSplitter(Collision other)
@@ -118,11 +154,6 @@ public class ValueActor_Value : MonoBehaviour
         Kill();
     }
 
-    private void Kill()
-    {
-        Destroy(gameObject);
-    }
-
     private void ManageInteractionWithValueBumper(Collision other)
     {
         m_valueBumperBuffer = other.collider.gameObject.GetComponent<ValueBumper>();
@@ -138,6 +169,7 @@ public class ValueActor_Value : MonoBehaviour
 
         m_valueBumperBuffer = null;
     }
+    #endregion
 
     private void ApplyBumperEffect(BumpEffect bumpEffect)
     {
@@ -161,6 +193,11 @@ public class ValueActor_Value : MonoBehaviour
         m_tweener = m_valueVisual.DOPunchScale(Vector3.one, 0.33f, 1);
     }
 
+    private void Kill()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnSpawnValue(ValueActor_Value actorValue, Vector3 ejectionDirection, float value,
         float ejectionStrength)
     {
@@ -168,7 +205,7 @@ public class ValueActor_Value : MonoBehaviour
             return;
 
         m_isInCooldownCollision = true;
-        
+
         SetValue(value);
 
         AddForce(ejectionDirection, ejectionStrength);
@@ -184,6 +221,8 @@ public class ValueActor_Value : MonoBehaviour
 
     private void SetValue(float newValue)
     {
+        if (newValue < 1)
+            newValue = 1;
         m_value = newValue;
         UpdateText();
     }

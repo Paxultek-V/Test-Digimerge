@@ -9,7 +9,7 @@ public enum SpawnerType
     Automatic
 }
 
-public class Spawner : MonoBehaviour
+public class Spawner_ValueActor : MonoBehaviour
 {
     public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
 

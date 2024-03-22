@@ -70,11 +70,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 0
+  m_bonusValue: 1
+  m_bonusDuration: 30
+  m_health: 250
   m_spawnFrequencyFxGroup: {fileID: 7108104493600640664}
   m_boostInitialValueFxGroup: {fileID: 533609467271515645}
   m_valueText: {fileID: 3960234414675091314}
   m_transformToBump: {fileID: 4074584973850597429}
-  m_initialValueBonus: 25
 --- !u!1 &533609467271515645
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +277,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 25
+  m_text: 250
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
@@ -771,6 +773,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 19813282, guid: 2492fe19d03bc4f7a81e790bfa11ec17, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -942,6 +948,10 @@ PrefabInstance:
     - target: {fileID: 428822, guid: 04171d165759d4d5792ffc1d9b934ab2, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19846592, guid: 04171d165759d4d5792ffc1d9b934ab2, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
