@@ -6,12 +6,16 @@ using UnityEngine;
 [ExecuteAlways]
 public class PlatformValue : MonoBehaviour
 {
+    public static Action OnDestroyPlatformToNextLevel;
+    
     [SerializeField] private float m_platformInitialValue = 50f;
 
     [SerializeField] private TMP_Text m_valueText = null;
 
     [SerializeField] private Transform m_transformToBump = null;
 
+    [SerializeField] private bool m_isPlatformToNextLevel = false;
+    
     private Tweener m_tweener;
     private float m_platformCurrentValue;
 
@@ -72,6 +76,9 @@ public class PlatformValue : MonoBehaviour
 
     private void Kill()
     {
+        if(m_isPlatformToNextLevel)
+            OnDestroyPlatformToNextLevel?.Invoke();
+        
         Destroy(gameObject);
     }
 

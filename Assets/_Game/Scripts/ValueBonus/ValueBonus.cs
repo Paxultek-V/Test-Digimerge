@@ -19,7 +19,7 @@ public class ValueBonus : MonoBehaviour
     [SerializeField] private float m_bonusValue = 1;
     [SerializeField] private float m_bonusDuration = 30;
 
-    [SerializeField] private float m_bonusHealth = 25f;
+    [SerializeField] private float m_health = 250f;
     
     [SerializeField] private GameObject m_spawnFrequencyFxGroup = null;
     [SerializeField] private GameObject m_boostInitialValueFxGroup = null;
@@ -44,7 +44,7 @@ public class ValueBonus : MonoBehaviour
 
     private void Start()
     {
-        m_currentValueBonus = m_bonusHealth;
+        m_currentValueBonus = m_health;
 
         m_spawnFrequencyFxGroup.SetActive(m_type == BonusType.SpawnFrequency);
         m_boostInitialValueFxGroup.SetActive(m_type == BonusType.BoostInitialValue);
@@ -57,7 +57,7 @@ public class ValueBonus : MonoBehaviour
 #if UNITY_EDITOR
         if (Application.isPlaying == false)
         {
-            m_currentValueBonus = m_bonusHealth;
+            m_currentValueBonus = m_health;
             UpdatePlatformValueText();
         }
 #endif

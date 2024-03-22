@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 14964958920753813, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_Name
-      value: ValueBonus Variant
+      value: ValueBonus_BoostInitialValue Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4425432641298652042, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_bonusHealth
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

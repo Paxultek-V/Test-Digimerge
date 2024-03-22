@@ -13,14 +13,17 @@ public class Spawner : MonoBehaviour
 {
     public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
 
-    [Header("Parameters")]
-    [SerializeField] private SpawnerType m_spawnerType;
+    [Header("Parameters")] [SerializeField]
+    private SpawnerType m_spawnerType;
+
     [SerializeField] private float m_maxEjectionStrength = 250f;
+    [SerializeField] private float m_splitEjectionStrength = 50f;
     [SerializeField] private float m_initialValue = 1f;
     [SerializeField] private float m_initialSpawnSpeed = 1f;
 
-    [Header("References")]
-    [SerializeField] private ValueActor_Value m_valuePrefab = null;
+    [Header("References")] [SerializeField]
+    private ValueActor_Value m_valuePrefab = null;
+
     [SerializeField] private GameObject m_spawnPosition = null;
     [SerializeField] private Transform m_valuesParent = null;
     [SerializeField] private TMP_Text m_initialValueText = null;
@@ -32,6 +35,7 @@ public class Spawner : MonoBehaviour
     private float m_currentValueToSpawn;
     private bool m_isContinuousSpawningEnabled;
     private bool m_isInCooldown;
+    private bool m_isSpawningEnabled;
 
     private void OnEnable()
     {
@@ -49,6 +53,9 @@ public class Spawner : MonoBehaviour
         }
 
         ValueBonus.OnGrantBonus += OnGrantBonus;
+        Manager_Level.OnStartLoadingNextLevel += DisableSpawning;
+        Manager_Level.OnNextLevelLoaded += EnableSpawning;
+        ValueActor_Value.OnHitSplitter += OnHitSplitter;
     }
 
     private void OnDisable()
@@ -67,6 +74,9 @@ public class Spawner : MonoBehaviour
         }
 
         ValueBonus.OnGrantBonus -= OnGrantBonus;
+        Manager_Level.OnStartLoadingNextLevel -= DisableSpawning;
+        Manager_Level.OnNextLevelLoaded -= EnableSpawning;
+        ValueActor_Value.OnHitSplitter -= OnHitSplitter;
     }
 
     private void Start()
@@ -78,6 +88,9 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
+        if (m_isSpawningEnabled == false)
+            return;
+
         if (m_isInCooldown)
         {
             m_spawnTimer += Time.deltaTime;
@@ -89,9 +102,25 @@ public class Spawner : MonoBehaviour
         if (m_isContinuousSpawningEnabled == false)
             return;
 
-        SpawnValue(1f);
+        SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward, m_currentValueToSpawn, 1f);
         m_isInCooldown = true;
         m_spawnTimer = 0f;
+    }
+
+    private void EnableSpawning()
+    {
+        m_isSpawningEnabled = true;
+    }
+
+    private void DisableSpawning()
+    {
+        m_isSpawningEnabled = false;
+    }
+
+    private void OnHitSplitter(Vector3 splitPosition, float value)
+    {
+        SpawnValue(splitPosition,(Vector3.up + Vector3.left).normalized, (int)(value/2f), m_splitEjectionStrength);
+        SpawnValue(splitPosition,(Vector3.up + Vector3.right).normalized, (int)(value/2f), m_splitEjectionStrength);
     }
 
     private void OnGrantBonus(BonusType type, float value, float duration)
@@ -113,7 +142,7 @@ public class Spawner : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
         switch (type)
         {
@@ -141,7 +170,7 @@ public class Spawner : MonoBehaviour
 
     private void OnFinishedCharging(float chargeProgression)
     {
-        SpawnValue(chargeProgression);
+        //SpawnValue(chargeProgression);
     }
 
     private void UpdateSpawnValue(float newValue)
@@ -150,12 +179,12 @@ public class Spawner : MonoBehaviour
         m_initialValueText.text = "$" + m_currentValueToSpawn.ToString("F0");
     }
 
-    private void SpawnValue(float chargeProgression)
+    private void SpawnValue(Vector3 spawnPosition, Vector3 ejectionDirection, float value, float chargeProgression)
     {
-        m_valueBuffer = Instantiate(m_valuePrefab, m_spawnPosition.transform.position, Quaternion.identity,
+        m_valueBuffer = Instantiate(m_valuePrefab, spawnPosition, Quaternion.identity,
             m_valuesParent);
 
-        OnSpawnValue?.Invoke(m_valueBuffer, m_spawnPosition.transform.forward, m_initialValue,
+        OnSpawnValue?.Invoke(m_valueBuffer, ejectionDirection, value,
             m_maxEjectionStrength * chargeProgression);
     }
 }

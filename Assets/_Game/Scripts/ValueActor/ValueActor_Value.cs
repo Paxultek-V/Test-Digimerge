@@ -9,6 +9,7 @@ public class ValueActor_Value : MonoBehaviour
     public static Action<ValueBumper> OnHitValueBumper;
     public static Action<PlatformValue, float> OnHitPlatformValue;
     public static Action<ValueBonus, float> OnHitValueBonus;
+    public static Action<Vector3, float> OnHitSplitter;
     public Action<int> OnSendValueLength;
 
     [SerializeField] private Rigidbody m_body = null;
@@ -25,19 +26,22 @@ public class ValueActor_Value : MonoBehaviour
     private ValueBumper m_valueBumperBuffer;
     private PlatformValue m_platformValueBuffer;
     private ValueBonus m_valueBonusBuffer;
+    private Splitter m_splitterBuffer;
     private float m_value;
-    private readonly float m_collisionCooldownDuration = 0.1f;
+    private readonly float m_collisionCooldownDuration = 0.2f;
     private float m_collisionCooldownTimer;
     private bool m_isInCooldownCollision;
 
     private void OnEnable()
     {
         Spawner.OnSpawnValue += OnSpawnValue;
+        //Manager_Level.OnStartLoadingNextLevel += Kill;
     }
 
     private void OnDisable()
     {
         Spawner.OnSpawnValue -= OnSpawnValue;
+        //Manager_Level.OnStartLoadingNextLevel -= Kill;
     }
 
 
@@ -60,14 +64,33 @@ public class ValueActor_Value : MonoBehaviour
         if (m_isInCooldownCollision)
             return;
 
+        // todo : change all of this with interfaces
         ManageInteractionWithValueBumper(other);
         ManageInteractionWithPlatformValue(other);
         ManageInteractionWithValueBonus(other);
+        ManageInteractionWithSplitter(other);
+    }
+
+    private void ManageInteractionWithSplitter(Collision other)
+    {
+        if (m_value <= 1f)
+            return;
+
+        m_splitterBuffer = other.collider.gameObject.GetComponent<Splitter>();
+
+        if (m_splitterBuffer == null)
+            return;
+
+        OnHitSplitter?.Invoke(transform.position, m_value);
+
+        m_isInCooldownCollision = true;
+
+        Kill();
     }
 
     private void ManageInteractionWithValueBonus(Collision other)
     {
-        m_valueBonusBuffer = other.collider.gameObject.GetComponentInParent<ValueBonus>();
+        m_valueBonusBuffer = other.collider.gameObject.GetComponent<ValueBonus>();
 
         if (m_valueBonusBuffer == null)
             return;
@@ -144,6 +167,8 @@ public class ValueActor_Value : MonoBehaviour
         if (actorValue != this)
             return;
 
+        m_isInCooldownCollision = true;
+        
         SetValue(value);
 
         AddForce(ejectionDirection, ejectionStrength);

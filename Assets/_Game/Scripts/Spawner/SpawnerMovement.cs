@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerMovement : MonoBehaviour
@@ -39,6 +36,8 @@ public class SpawnerMovement : MonoBehaviour
         m_progression = cursorPosition.x / Screen.width;
 
         m_desiredPosition.x = m_progression * (m_maxXPosition * 2) - m_maxXPosition;
+
+        m_desiredPosition.x = Mathf.Clamp(m_desiredPosition.x, -m_maxXPosition, m_maxXPosition);
     }
     
 
