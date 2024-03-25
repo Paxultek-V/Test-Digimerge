@@ -6,7 +6,7 @@ using UnityEngine;
 [ExecuteAlways]
 public class PlatformValue : MonoBehaviour
 {
-    public static Action OnDestroyPlatformToNextLevel;
+    public static Action OnDestroyPlatformToNextLevelSection;
     
     [SerializeField] private float m_platformInitialValue = 50f;
 
@@ -77,7 +77,7 @@ public class PlatformValue : MonoBehaviour
     private void Kill()
     {
         if(m_isPlatformToNextLevel)
-            OnDestroyPlatformToNextLevel?.Invoke();
+            OnDestroyPlatformToNextLevelSection?.Invoke();
         
         Destroy(gameObject);
     }

@@ -12,14 +12,15 @@ public class ValueActor_Value : MonoBehaviour
     public static Action<Vector3, float> OnHitSplitter;
     public Action<int> OnSendValueLength;
 
+    [Header("References")]
     [SerializeField] private Rigidbody m_body = null;
     [SerializeField] private TMP_Text m_text = null;
     [SerializeField] private Transform m_valueVisual = null;
 
+    [Header("Parameters")]
     [SerializeField] private float m_minRotationForce = -150f;
     [SerializeField] private float m_maxRotationForce = 150f;
-    [SerializeField] private readonly float m_collisionCooldownDuration = 0.2f;
-
+    [SerializeField] private float m_collisionCooldownDuration = 0.2f;
 
 
     private Tweener m_tweener;
@@ -32,6 +33,7 @@ public class ValueActor_Value : MonoBehaviour
     private float m_collisionCooldownTimer;
     private bool m_isInCooldownCollision;
 
+    
     private void OnEnable()
     {
         Spawner_ValueActor.OnSpawnValue += OnSpawnValue;
