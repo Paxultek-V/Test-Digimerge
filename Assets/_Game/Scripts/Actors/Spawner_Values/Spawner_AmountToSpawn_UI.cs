@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,7 +6,7 @@ public class Spawner_AmountToSpawn_UI : MonoBehaviour
     [SerializeField] private TMP_Text m_valueToSpawnText = null;
 
     [SerializeField] private Spawner_ValueActor m_spawnerValueActor = null;
-    
+
     private void OnEnable()
     {
         m_spawnerValueActor.OnSendRemainingValueToSpawn += UpdateValueToSpawn;

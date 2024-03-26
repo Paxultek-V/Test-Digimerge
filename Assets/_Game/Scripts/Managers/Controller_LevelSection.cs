@@ -7,6 +7,7 @@ public class Controller_LevelSection : MonoBehaviour
 {
     public static Action OnStartLoadingNextSectionLevel;
     public static Action OnNextLevelSectionLoaded;
+    public static Action OnFinishedLevel;
 
     [SerializeField] private List<GameObject> m_levelSectionList = null;
 
@@ -21,15 +22,16 @@ public class Controller_LevelSection : MonoBehaviour
     private GameObject m_currentLevelSection;
     private GameObject m_levelSectionToDestroy;
     private int m_indexLevelSectionToLoad;
+    private bool m_isLastLevelSection;
 
     private void OnEnable()
     {
-        PlatformValue.OnDestroyPlatformToNextLevelSection += OnDestroyPlatformToNextLevelSection;
+        PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
     }
 
     private void OnDisable()
     {
-        PlatformValue.OnDestroyPlatformToNextLevelSection -= OnDestroyPlatformToNextLevelSection;
+        PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
     }
 
 
@@ -63,7 +65,7 @@ public class Controller_LevelSection : MonoBehaviour
         m_indexLevelSectionToLoad++;
 
         if (m_indexLevelSectionToLoad >= m_levelSectionList.Count)
-            m_indexLevelSectionToLoad = 0;
+            m_isLastLevelSection = true;
     }
 
     private void ManageCompletedLevelSection()
@@ -87,8 +89,14 @@ public class Controller_LevelSection : MonoBehaviour
         OnNextLevelSectionLoaded?.Invoke();
     }
 
-    private void OnDestroyPlatformToNextLevelSection()
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
     {
+        if (m_isLastLevelSection)
+        {
+            OnFinishedLevel?.Invoke();
+            return;
+        }
+        
         ManageCompletedLevelSection();
         LoadNextLevelSection(true);
     }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &45453436708660790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6857314243656200247}
+  m_Layer: 0
+  m_Name: LevelSectionParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6857314243656200247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45453436708660790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3770537907269529674}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594029068501613219
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +62,39 @@ Transform:
   m_Children:
   - {fileID: 695366292018085163}
   - {fileID: 3189314689950070452}
+  - {fileID: 6857314243656200247}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2467639394648653552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3080504265182377788}
+  m_Layer: 0
+  m_Name: ValueActors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3080504265182377788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467639394648653552}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695366292018085163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2695050214531483017
 GameObject:
@@ -63,6 +126,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4099816865997907557}
+  - {fileID: 3080504265182377788}
   m_Father: {fileID: 3770537907269529674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3866766734380728019
@@ -145,6 +209,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3211859951992235521, guid: 36f573fec61ae48f4b31920e95fe5b77, type: 3}
+      propertyPath: m_levelSectionParent
+      value: 
+      objectReference: {fileID: 6857314243656200247}
     - target: {fileID: 7881980282576134842, guid: 36f573fec61ae48f4b31920e95fe5b77, type: 3}
       propertyPath: m_Name
       value: Controller_LevelSection
@@ -170,6 +238,14 @@ PrefabInstance:
     - target: {fileID: 366325266297468498, guid: e830446b947a74781839386fdb161a90, type: 3}
       propertyPath: m_Name
       value: Spawner_ValueActor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3267242279264971053, guid: e830446b947a74781839386fdb161a90, type: 3}
+      propertyPath: m_valuesParent
+      value: 
+      objectReference: {fileID: 3080504265182377788}
+    - target: {fileID: 3267242279264971053, guid: e830446b947a74781839386fdb161a90, type: 3}
+      propertyPath: m_initialAmountToSpawn
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8497633987330222066, guid: e830446b947a74781839386fdb161a90, type: 3}
       propertyPath: m_LocalPosition.x

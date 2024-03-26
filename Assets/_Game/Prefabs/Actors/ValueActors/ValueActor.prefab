@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -285,11 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_body: {fileID: 85800356404866715}
-  m_force: 25
-  m_minRotationForce: -150
-  m_maxRotationForce: 150
   m_text: {fileID: 1241828634095918311}
   m_valueVisual: {fileID: 2556486274708304055}
+  m_minRotationForce: -150
+  m_maxRotationForce: 150
+  m_collisionCooldownDuration: 0.2
 --- !u!114 &8950637456575860147
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 
 public class ValueActor_Value : MonoBehaviour
 {
+    public static Action<ValueActor_Value> OnValueKilled;
+
+    public static Action<float> OnHitPiggyBank;
     public static Action<ValueBumper> OnHitValueBumper;
     public static Action<PlatformValue, float> OnHitPlatformValue;
     public static Action<ValueBonus, float> OnHitValueBonus;
@@ -29,6 +32,7 @@ public class ValueActor_Value : MonoBehaviour
     private PlatformValue m_platformValueBuffer;
     private ValueBonus m_valueBonusBuffer;
     private Splitter m_splitterBuffer;
+    private PiggyBank m_piggyBankBuffer;
     private float m_value;
     private float m_collisionCooldownTimer;
     private bool m_isInCooldownCollision;
@@ -37,11 +41,13 @@ public class ValueActor_Value : MonoBehaviour
     private void OnEnable()
     {
         Spawner_ValueActor.OnSpawnValue += OnSpawnValue;
+        PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
     }
 
     private void OnDisable()
     {
         Spawner_ValueActor.OnSpawnValue -= OnSpawnValue;
+        PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
     }
 
 
@@ -76,8 +82,21 @@ public class ValueActor_Value : MonoBehaviour
         ManageInteractionWithValueBonus(other);
         ManageInteractionWithSplitter(other);
         ManageInteractionWithBlackHole(other);
+        ManageInteractionWithPiggyBank(other);
     }
 
+    private void ManageInteractionWithPiggyBank(Collision other)
+    {
+        m_piggyBankBuffer = other.collider.gameObject.GetComponent<PiggyBank>();
+        
+        if (m_piggyBankBuffer == null)
+            return;
+        
+        OnHitPiggyBank?.Invoke(m_value);
+        
+        Kill();
+    }
+    
     private void ManageInteractionWithBlackHole(Collision other)
     {
         m_blackHoleBuffer = other.collider.gameObject.GetComponent<BlackHole>();
@@ -183,6 +202,7 @@ public class ValueActor_Value : MonoBehaviour
 
     private void Kill()
     {
+        OnValueKilled?.Invoke(this);
         Destroy(gameObject);
     }
 
@@ -231,5 +251,10 @@ public class ValueActor_Value : MonoBehaviour
             value = m_value.ToString("F0");
 
         return "$" + value;
+    }
+
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
+    {
+        Kill();
     }
 }

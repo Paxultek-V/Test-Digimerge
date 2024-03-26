@@ -54,23 +54,25 @@ public class MeshMaterialData
 [ExecuteAlways]
 public class ValueBumper : MonoBehaviour
 {
-    [Header("Bump effect parameters")]
-    [SerializeField] private BumpEffect m_bumpEffect = null;
+    [Header("Bump effect parameters")] [SerializeField]
+    private BumpEffect m_bumpEffect = null;
 
-    [Header("Model visual")]
-    [SerializeField] private List<MeshMaterialData> m_meshMaterialDataList = null;
+    [Header("Model visual")] [SerializeField]
+    private List<MeshMaterialData> m_meshMaterialDataList = null;
 
-    [Header("Light visual")]
-    [SerializeField] private Image m_fakeLightImage = null;
+    [Header("Light visual")] [SerializeField]
+    private Image m_fakeLightImage = null;
+
     [SerializeField] private Color m_addEffectColor = Color.white;
     [SerializeField] private Color m_multiplyEffectColor = Color.white;
     [SerializeField] private Color m_subtractEffectColor = Color.white;
 
-    [Header("References")]
-    [SerializeField] private TMP_Text m_bumpEffectText = null;
+    [Header("References")] [SerializeField]
+    private TMP_Text m_bumpEffectText = null;
+
     [SerializeField] private Transform m_bumperVisual = null;
 
-    
+
     private Tweener m_tweener;
 
     public BumpEffect BumpEffect
@@ -89,8 +91,10 @@ public class ValueBumper : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
+        if (Application.isPlaying)
+            return;
+
         UpdateLight();
-        UpdateFx();
         UpdateEffectMaterial();
         UpdateBumpEffectText();
 #endif
@@ -127,7 +131,9 @@ public class ValueBumper : MonoBehaviour
     private void UpdateFx()
     {
         if (m_bumpEffect.FxPrefab != null)
+        {
             Instantiate(m_bumpEffect.FxPrefab, transform.position, Quaternion.identity, transform);
+        }
     }
 
     private void UpdateBumpEffectText()

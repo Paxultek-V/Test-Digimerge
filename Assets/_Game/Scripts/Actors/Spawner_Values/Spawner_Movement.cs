@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnerMovement : MonoBehaviour
+public class Spawner_Movement : MonoBehaviour
 {
     [SerializeField] private Vector3 m_originalPosition = Vector3.zero;
     

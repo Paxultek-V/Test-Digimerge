@@ -1,18 +1,106 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PiggyBank : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Action<float> OnPiggyBankFinishedCollectingMoney;
+    public static Action<float> OnGrantGemReward;
+    public static Action OnTargetAmountNotReached;
+    public static Action OnTargetAmountReached;
+    
+    [SerializeField] private float m_amountToCollect = 100f;
+    
+    [SerializeField] private int m_gemsReward = 1;
+
+    [SerializeField] private Transform m_visualToBump = null;
+
+    [SerializeField] private Transform m_scaleController = null;
+    
+    [SerializeField] private TMP_Text m_textValue = null;
+    
+
+    private Coroutine m_delayCoroutine; 
+    private Tweener m_tweener;
+    private float m_collectedAmount;
+    private float m_progression
     {
-        
+        get => m_collectedAmount / m_amountToCollect;
+    }
+    private bool m_isTargetAmountReached;
+
+    private void OnEnable()
+    {
+        ValueActor_Value.OnHitPiggyBank += OnHitPiggyBank;
+        Spawner_ValueActor.OnAllValuesUsed += OnAllValuesUsed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
+        ValueActor_Value.OnHitPiggyBank -= OnHitPiggyBank;
+        Spawner_ValueActor.OnAllValuesUsed -= OnAllValuesUsed;
+    }
+
+    private void Start()
+    {
+        m_collectedAmount = 0;
+        UpdateText();
+        UpdateScale();
+    }
+
+
+    private void OnAllValuesUsed()
+    {
+        if (m_collectedAmount >= m_amountToCollect)
+        {
+            m_isTargetAmountReached = true;
+            
+            OnGrantGemReward?.Invoke(m_gemsReward);
         
+            OnPiggyBankFinishedCollectingMoney?.Invoke(m_collectedAmount);
+        
+            Destroy(gameObject);
+        }
+        else
+        {
+            OnTargetAmountNotReached?.Invoke();
+        }
+    }
+    
+    private void OnHitPiggyBank(float value)
+    {
+        m_collectedAmount += value;
+
+        UpdateText();
+        
+        UpdateScale();
+        
+        m_visualToBump.localScale = Vector3.one;
+
+        if (m_tweener != null && m_tweener.IsPlaying())
+            return;
+
+        m_tweener = m_visualToBump.DOPunchScale(Vector3.one/2f, 0.33f, 1);
+        
+        if(m_isTargetAmountReached)
+            return;
+
+        if (m_collectedAmount >= m_amountToCollect)
+        {
+            m_isTargetAmountReached = true;
+            OnTargetAmountReached?.Invoke();
+        }
+    }
+
+    private void UpdateScale()
+    {
+        m_scaleController.localScale = Vector3.one + Vector3.one * Mathf.Clamp01(m_progression);
+    }
+
+    private void UpdateText()
+    {
+        m_textValue.text = m_collectedAmount.ToString("F0") + "/" + m_amountToCollect.ToString("F0");
     }
 }
