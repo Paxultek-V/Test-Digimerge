@@ -3,32 +3,37 @@ using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PiggyBank : MonoBehaviour
 {
-    public static Action<float> OnPiggyBankFinishedCollectingMoney;
-    public static Action<float> OnGrantGemReward;
+    public static Action<float, bool> OnPiggyBankFinishedCollectingMoney;
+    public static Action<int> OnGrantGemReward;
     public static Action OnTargetAmountNotReached;
     public static Action OnTargetAmountReached;
-    
+
     [SerializeField] private float m_amountToCollect = 100f;
-    
+
     [SerializeField] private int m_gemsReward = 1;
+
+    [SerializeField] private bool m_isLastPiggyBankOfLevel = false;
 
     [SerializeField] private Transform m_visualToBump = null;
 
     [SerializeField] private Transform m_scaleController = null;
-    
-    [SerializeField] private TMP_Text m_textValue = null;
-    
 
-    private Coroutine m_delayCoroutine; 
+    [SerializeField] private TMP_Text m_textValue = null;
+
+
+    private Coroutine m_delayCoroutine;
     private Tweener m_tweener;
     private float m_collectedAmount;
+
     private float m_progression
     {
         get => m_collectedAmount / m_amountToCollect;
     }
+
     private bool m_isTargetAmountReached;
 
     private void OnEnable()
@@ -53,14 +58,12 @@ public class PiggyBank : MonoBehaviour
 
     private void OnAllValuesUsed()
     {
-        if (m_collectedAmount >= m_amountToCollect)
+        if (m_isTargetAmountReached)
         {
-            m_isTargetAmountReached = true;
-            
             OnGrantGemReward?.Invoke(m_gemsReward);
-        
-            OnPiggyBankFinishedCollectingMoney?.Invoke(m_collectedAmount);
-        
+
+            OnPiggyBankFinishedCollectingMoney?.Invoke(m_collectedAmount, m_isLastPiggyBankOfLevel);
+
             Destroy(gameObject);
         }
         else
@@ -68,23 +71,23 @@ public class PiggyBank : MonoBehaviour
             OnTargetAmountNotReached?.Invoke();
         }
     }
-    
+
     private void OnHitPiggyBank(float value)
     {
         m_collectedAmount += value;
 
         UpdateText();
-        
+
         UpdateScale();
-        
+
         m_visualToBump.localScale = Vector3.one;
 
         if (m_tweener != null && m_tweener.IsPlaying())
             return;
 
-        m_tweener = m_visualToBump.DOPunchScale(Vector3.one/2f, 0.33f, 1);
-        
-        if(m_isTargetAmountReached)
+        m_tweener = m_visualToBump.DOPunchScale(Vector3.one / 2f, 0.33f, 1);
+
+        if (m_isTargetAmountReached)
             return;
 
         if (m_collectedAmount >= m_amountToCollect)

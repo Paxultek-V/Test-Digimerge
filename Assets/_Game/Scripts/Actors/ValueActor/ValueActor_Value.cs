@@ -41,13 +41,11 @@ public class ValueActor_Value : MonoBehaviour
     private void OnEnable()
     {
         Spawner_ValueActor.OnSpawnValue += OnSpawnValue;
-        PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
     }
 
     private void OnDisable()
     {
         Spawner_ValueActor.OnSpawnValue -= OnSpawnValue;
-        PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
     }
 
 
@@ -93,6 +91,8 @@ public class ValueActor_Value : MonoBehaviour
             return;
         
         OnHitPiggyBank?.Invoke(m_value);
+        
+        m_isInCooldownCollision = true;
         
         Kill();
     }
@@ -202,6 +202,7 @@ public class ValueActor_Value : MonoBehaviour
 
     private void Kill()
     {
+        //Debug.Log("killed");
         OnValueKilled?.Invoke(this);
         Destroy(gameObject);
     }
@@ -252,9 +253,5 @@ public class ValueActor_Value : MonoBehaviour
 
         return "$" + value;
     }
-
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
-    {
-        Kill();
-    }
+    
 }

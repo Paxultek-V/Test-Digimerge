@@ -89,7 +89,7 @@ public class Controller_LevelSection : MonoBehaviour
         OnNextLevelSectionLoaded?.Invoke();
     }
 
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
     {
         if (m_isLastLevelSection)
         {

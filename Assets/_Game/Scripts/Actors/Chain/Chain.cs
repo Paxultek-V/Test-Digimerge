@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class Chain : MonoBehaviour
 {
-    private List<GameObject> m_chainList = new List<GameObject>();
+    private List<ChainElement> m_chainList = new List<ChainElement>();
 
+    private ChainElement m_chainElementBuffer;
 
     private void OnEnable()
     {
@@ -22,12 +23,15 @@ public class Chain : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            m_chainList.Add(child.gameObject);
+            m_chainElementBuffer = child.gameObject.GetComponent<ChainElement>();
+            
+            if (m_chainElementBuffer != null)
+                m_chainList.Add(m_chainElementBuffer);
         }
     }
 
 
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
     {
         DestroyChain();
     }
@@ -36,7 +40,7 @@ public class Chain : MonoBehaviour
     {
         for (int i = 0; i < m_chainList.Count; i++)
         {
-            m_chainList[i].SetActive(false);
+            m_chainList[i].DestroyChainElement();
         }
     }
 }

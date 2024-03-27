@@ -46,8 +46,8 @@ public class Manager_GameState : MonoBehaviour
         m_currentGameState = GameState.MainMenu;
         BroadcastGameState();
     }
-    
-    public void StartGame()
+
+    private void StartGame()
     {
         m_currentGameState = GameState.InGame;
         BroadcastGameState();

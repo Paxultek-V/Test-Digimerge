@@ -38,7 +38,6 @@ public class Spawner_ValueActor : MonoBehaviour
         Controller.OnTapBegin += StartSpawning;
         Controller.OnRelease += StopSpawning;
 
-        Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
         Controller_LevelSection.OnNextLevelSectionLoaded += OnNextLevelSectionLoaded;
 
         ValueActor_Value.OnHitSplitter += OnHitSplitter;
@@ -55,7 +54,6 @@ public class Spawner_ValueActor : MonoBehaviour
         Controller.OnTapBegin -= StartSpawning;
         Controller.OnRelease -= StopSpawning;
 
-        Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
         Controller_LevelSection.OnNextLevelSectionLoaded -= OnNextLevelSectionLoaded;
 
         ValueActor_Value.OnHitSplitter -= OnHitSplitter;
@@ -74,14 +72,14 @@ public class Spawner_ValueActor : MonoBehaviour
 
     private void Initialize()
     {
-        m_isInCooldown = false;
+        m_isInCooldown = true;
 
         m_currentSpawnSpeed = m_initialSpawnSpeed;
 
         m_remainingValueToSpawn = m_initialAmountToSpawn;
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
 
-        UpdateSpawnValue(m_initialValue);
+        UpdateValueToSpawn(m_initialValue);
     }
 
     private void Update()
@@ -133,8 +131,13 @@ public class Spawner_ValueActor : MonoBehaviour
         m_spawnTimer = 0f;
     }
 
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
     {
+        DisableSpawning();
+        
+        if(isLastPiggyBankOfLevel)
+            return;
+
         m_remainingValueToSpawn = amountCollected;
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
     }
@@ -160,7 +163,7 @@ public class Spawner_ValueActor : MonoBehaviour
                 m_currentSpawnSpeed += value;
                 break;
             case BonusType.BoostInitialValue:
-                UpdateSpawnValue(m_currentValueToSpawn + value);
+                UpdateValueToSpawn(m_currentValueToSpawn + value);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -174,7 +177,7 @@ public class Spawner_ValueActor : MonoBehaviour
                 m_currentSpawnSpeed -= value;
                 break;
             case BonusType.BoostInitialValue:
-                UpdateSpawnValue(m_currentValueToSpawn - value);
+                UpdateValueToSpawn(m_currentValueToSpawn - value);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -182,10 +185,9 @@ public class Spawner_ValueActor : MonoBehaviour
     }
 
 
-    private void UpdateSpawnValue(float newValue)
+    private void UpdateValueToSpawn(float newValue)
     {
         m_currentValueToSpawn = newValue;
-        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
     }
 
 
@@ -193,29 +195,36 @@ public class Spawner_ValueActor : MonoBehaviour
     {
         m_valueBuffer = Instantiate(m_valuePrefab, spawnPosition, Quaternion.identity, m_valuesParent);
 
+        m_valueActorList.Add(m_valueBuffer);
+
         OnSpawnValue?.Invoke(m_valueBuffer, ejectionDirection, value,
             m_maxEjectionStrength * chargeProgression);
-
-        m_valueActorList.Add(m_valueBuffer);
     }
 
     private void OnValueKilled(ValueActor_Value value)
     {
-        m_valueActorList.Remove(value);
-
-        if (m_canTrackRemainingValues && m_valueActorList.Count == 0)
-            OnAllValuesUsed?.Invoke();
+        if (m_valueActorList.Remove(value))
+        {
+            if (m_canTrackRemainingValues && m_valueActorList.Count == 0)
+            {
+                OnAllValuesUsed?.Invoke();
+            }
+        }
     }
 
     private void OnTargetAmountReached()
     {
         if (m_remainingValueToSpawn > 1)
+        {
             m_canShootAllAtOnce = true;
+        }
     }
 
     private void OnNextLevelSectionLoaded()
     {
         EnableSpawning();
+        m_canShootAllAtOnce = false;
+        m_canTrackRemainingValues = false;
     }
 
     private void EnableSpawning()
@@ -223,12 +232,6 @@ public class Spawner_ValueActor : MonoBehaviour
         m_isSpawningEnabled = true;
     }
 
-    private void OnStartLoadingNextSectionLevel()
-    {
-        DisableSpawning();
-        m_canTrackRemainingValues = false;
-        m_canShootAllAtOnce = false;
-    }
 
     private void DisableSpawning()
     {
