@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,6 +27,11 @@ public class Spawner_ValueBonus : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         m_canSpawn = false;
         m_isSpawningInCooldown = true;
         m_timer = 0f;
@@ -42,9 +46,7 @@ public class Spawner_ValueBonus : MonoBehaviour
     private void FillSpawnPositionList()
     {
         foreach (Transform child in transform)
-        {
             m_spawnPositionList.Add(child);
-        }
     }
 
     private void ManageValueBonusSpawning()

@@ -32,7 +32,6 @@ public class Manager_Gems : MonoBehaviour
         if (PlayerPrefs.HasKey(m_gemsSaveTag))
         {
             m_gemsCount = PlayerPrefs.GetInt(m_gemsSaveTag);
-            Debug.Log("Loaded " + m_gemsCount);
         }
         else
         {
@@ -46,7 +45,6 @@ public class Manager_Gems : MonoBehaviour
     private void SaveGemsAmount()
     {
         PlayerPrefs.SetInt(m_gemsSaveTag, m_gemsCount);
-        Debug.Log("Saved " + m_gemsCount);
     }
 
     private void OnGrantGemReward(int gainedGems)

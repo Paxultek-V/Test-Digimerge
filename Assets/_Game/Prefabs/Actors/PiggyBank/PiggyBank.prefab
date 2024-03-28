@@ -101,7 +101,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 1}
+  m_SizeDelta: {x: 15, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1785823119523310326
 Canvas:
@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_amountToCollect: 5
   m_gemsReward: 1
+  m_isLastPiggyBankOfLevel: 0
   m_visualToBump: {fileID: 4087269361242423761}
   m_scaleController: {fileID: 5680491944593892909}
   m_textValue: {fileID: 5948031833925274878}

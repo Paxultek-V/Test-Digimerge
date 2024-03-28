@@ -18,7 +18,6 @@ public class ValueBonus : MonoBehaviour
     [SerializeField] private BonusType m_type;
     [SerializeField] private float m_bonusValue = 1;
     [SerializeField] private float m_bonusDuration = 30;
-
     [SerializeField] private float m_health = 250f;
     
     [SerializeField] private GameObject m_spawnFrequencyFxGroup = null;
@@ -26,11 +25,10 @@ public class ValueBonus : MonoBehaviour
     [SerializeField] private TMP_Text m_valueText = null;
     [SerializeField] private Transform m_transformToBump = null;
 
-
     
-    private float m_currentValueBonus;
-
     private Tweener m_tweener;
+    private float m_currentValueBonus;
+    
 
     private void OnEnable()
     {
@@ -44,11 +42,16 @@ public class ValueBonus : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         m_currentValueBonus = m_health;
 
         m_spawnFrequencyFxGroup.SetActive(m_type == BonusType.SpawnFrequency);
         m_boostInitialValueFxGroup.SetActive(m_type == BonusType.BoostInitialValue);
-        
+
         UpdatePlatformValueText();
     }
 

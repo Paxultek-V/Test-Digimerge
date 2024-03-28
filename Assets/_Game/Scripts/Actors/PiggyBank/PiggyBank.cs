@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PiggyBank : MonoBehaviour
 {
@@ -80,16 +78,16 @@ public class PiggyBank : MonoBehaviour
 
         UpdateScale();
 
-        m_visualToBump.localScale = Vector3.one;
-
-        if (m_tweener != null && m_tweener.IsPlaying())
-            return;
-
-        m_tweener = m_visualToBump.DOPunchScale(Vector3.one / 2f, 0.33f, 1);
+        PlayTweenAnimation();
 
         if (m_isTargetAmountReached)
             return;
 
+        CheckTargetAmountReachedCondition();
+    }
+
+    private void CheckTargetAmountReachedCondition()
+    {
         if (m_collectedAmount >= m_amountToCollect)
         {
             m_isTargetAmountReached = true;
@@ -97,6 +95,16 @@ public class PiggyBank : MonoBehaviour
         }
     }
 
+    private void PlayTweenAnimation()
+    {
+        m_visualToBump.localScale = Vector3.one;
+
+        if (m_tweener != null && m_tweener.IsPlaying())
+            return;
+
+        m_tweener = m_visualToBump.DOPunchScale(Vector3.one / 2f, 0.33f, 1);
+    }
+    
     private void UpdateScale()
     {
         m_scaleController.localScale = Vector3.one + Vector3.one * Mathf.Clamp01(m_progression);

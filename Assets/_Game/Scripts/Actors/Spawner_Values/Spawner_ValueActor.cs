@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Spawner_ValueActor : MonoBehaviour
 {
     public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
+    public static Action<float> OnSendAdditionalTimeBeforeSpawnStopsTimer;
     public static Action OnAllValuesUsed;
     public Action<float> OnSendRemainingValueToSpawn;
 
@@ -14,6 +16,7 @@ public class Spawner_ValueActor : MonoBehaviour
     [SerializeField] private float m_splitEjectionStrength = 50f;
     [SerializeField] private float m_initialValue = 1f;
     [SerializeField] private float m_initialSpawnSpeed = 1f;
+    [FormerlySerializedAs("m_additionalTimeBeforeSpawnStopsTime")] [SerializeField] private float m_additionalTimeBeforeSpawnStops = 3f;
 
     [Header("References")] [SerializeField]
     private ValueActor_Value m_valuePrefab = null;
@@ -27,11 +30,12 @@ public class Spawner_ValueActor : MonoBehaviour
     private float m_currentSpawnSpeed;
     private float m_currentValueToSpawn;
     private float m_remainingValueToSpawn;
-    private bool m_isContinuousSpawningEnabled;
-    private bool m_isInCooldown;
-    private bool m_isSpawningEnabled;
+    private float m_additionalTimeBeforeSpawnStopsTimer;
+    
+    private bool m_isSpawningEnabled; //flag to manage the overall state of spawning
+    private bool m_isContinuousSpawningEnabled; //flag to manage spawning  with the input controls
+    private bool m_isInCooldown; //flag to manage the spawning speed
     private bool m_canTrackRemainingValues;
-    private bool m_canShootAllAtOnce;
 
     private void OnEnable()
     {
@@ -106,42 +110,59 @@ public class Spawner_ValueActor : MonoBehaviour
         if (m_remainingValueToSpawn <= 0)
             return;
 
-        if (m_canShootAllAtOnce)
-        {
-            SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward, m_remainingValueToSpawn,
-                1f);
-            m_remainingValueToSpawn = 0;
-            m_canShootAllAtOnce = false;
-        }
-        else
-        {
-            SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward, m_currentValueToSpawn,
-                1f);
-            m_remainingValueToSpawn -= m_currentValueToSpawn;
-        }
+        SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward, m_currentValueToSpawn,
+            1f);
+        m_remainingValueToSpawn -= m_currentValueToSpawn;
 
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
 
-        if (m_remainingValueToSpawn <= 0)
-        {
+        if (m_remainingValueToSpawn <= 0 && m_canTrackRemainingValues == false)
             m_canTrackRemainingValues = true;
-        }
-
+        
         m_isInCooldown = true;
         m_spawnTimer = 0f;
     }
 
     private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
     {
-        DisableSpawning();
-        
-        if(isLastPiggyBankOfLevel)
+        if (isLastPiggyBankOfLevel)
             return;
 
         m_remainingValueToSpawn = amountCollected;
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
     }
 
+    private void OnTargetAmountReached()
+    {
+        StartCoroutine(AdditionalTimeBeforeSpawnStops());
+    }
+
+    private IEnumerator AdditionalTimeBeforeSpawnStops()
+    {
+        m_additionalTimeBeforeSpawnStopsTimer = 0f;
+
+        while (m_additionalTimeBeforeSpawnStopsTimer < m_additionalTimeBeforeSpawnStops)
+        {
+            m_additionalTimeBeforeSpawnStopsTimer += Time.unscaledDeltaTime;
+            
+            OnSendAdditionalTimeBeforeSpawnStopsTimer?.Invoke(m_additionalTimeBeforeSpawnStops - m_additionalTimeBeforeSpawnStopsTimer);
+            
+            yield return new WaitForEndOfFrame();
+        }
+        
+        DisableSpawning();
+
+        m_remainingValueToSpawn = 0;
+        m_canTrackRemainingValues = true;
+        
+        if (m_canTrackRemainingValues && m_valueActorList.Count == 0)
+        {
+            OnAllValuesUsed?.Invoke();
+        }
+        
+        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
+    }
+    
     private void OnHitSplitter(Vector3 splitPosition, float value)
     {
         SpawnValue(splitPosition, (Vector3.up + Vector3.left).normalized, (int)(value / 2f), m_splitEjectionStrength);
@@ -212,19 +233,10 @@ public class Spawner_ValueActor : MonoBehaviour
         }
     }
 
-    private void OnTargetAmountReached()
-    {
-        if (m_remainingValueToSpawn > 1)
-        {
-            m_canShootAllAtOnce = true;
-        }
-    }
 
     private void OnNextLevelSectionLoaded()
     {
-        
         EnableSpawning();
-        m_canShootAllAtOnce = false;
         m_canTrackRemainingValues = false;
     }
 
