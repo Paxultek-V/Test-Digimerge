@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8497633987330222066}
   - component: {fileID: 3267242279264971053}
+  - component: {fileID: 3415380459319090035}
+  - component: {fileID: 5063255935173985920}
   - component: {fileID: 1145474817893210759}
   - component: {fileID: 7259854381298182775}
   m_Layer: 0
@@ -49,14 +51,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28873c72df14aa3b1ce76995a4152f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_initialAmountToSpawn: 100
-  m_maxEjectionStrength: 500
-  m_splitEjectionStrength: 1
-  m_initialValue: 1
-  m_initialSpawnSpeed: 1.5
-  m_valuePrefab: {fileID: 7879417967242118175, guid: b3af26aa8c95f453bbbf5199b3ae9808, type: 3}
-  m_spawnPosition: {fileID: 5364579251687678909}
+  m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
+  m_spawnerSpawningCondition: {fileID: 3415380459319090035}
+  m_spawnerStats: {fileID: 5063255935173985920}
   m_valuesParent: {fileID: 0}
+  m_spawnPosition: {fileID: 5364579251687678909}
+  m_initialAmountToSpawn: 100
+--- !u!114 &3415380459319090035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366325266297468498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce19ed090bce40a8ba879b8155a7080, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
+--- !u!114 &5063255935173985920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366325266297468498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe7d66b7984e46659c0bf769d819568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
 --- !u!114 &1145474817893210759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad11be0f98d7e4675aec6fc3ae4a90f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_originalPosition: {x: 0, y: 20, z: 0}
-  m_maxXPosition: 7
+  m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
 --- !u!114 &7259854381298182775
 MonoBehaviour:
   m_ObjectHideFlags: 0

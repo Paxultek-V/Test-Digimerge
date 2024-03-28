@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Spawner_Movement : MonoBehaviour
 {
-    [SerializeField] private Vector3 m_originalPosition = Vector3.zero;
-    
-    [SerializeField] private float m_maxXPosition = 7f;
+    [SerializeField] private Spawner_Value_SO m_spawnerData = null;
 
     private Vector3 m_desiredPosition;
     private Vector3 m_startPosition;
@@ -22,7 +20,7 @@ public class Spawner_Movement : MonoBehaviour
 
     private void Start()
     {
-        m_startPosition = m_originalPosition;
+        m_startPosition = transform.position;
         m_desiredPosition = m_startPosition;
     }
 
@@ -35,9 +33,9 @@ public class Spawner_Movement : MonoBehaviour
     {
         m_progression = cursorPosition.x / Screen.width;
 
-        m_desiredPosition.x = m_progression * (m_maxXPosition * 2) - m_maxXPosition;
+        m_desiredPosition.x = m_progression * (m_spawnerData.maxXPosition * 2) - m_spawnerData.maxXPosition;
 
-        m_desiredPosition.x = Mathf.Clamp(m_desiredPosition.x, -m_maxXPosition, m_maxXPosition);
+        m_desiredPosition.x = Mathf.Clamp(m_desiredPosition.x, -m_spawnerData.maxXPosition, m_spawnerData.maxXPosition);
     }
     
 
@@ -45,7 +43,4 @@ public class Spawner_Movement : MonoBehaviour
     {
         transform.position = m_desiredPosition;
     }
-    
-    
-    
 }

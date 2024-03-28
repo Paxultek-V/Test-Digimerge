@@ -15,12 +15,12 @@ public class UI_BonusTimer : MonoBehaviour
 
     private void OnEnable()
     {
-        ValueBonus.OnGrantBonus += OnGrantBonus;
+        Spawner_Stats.OnSendBonusRemainingDuration += OnSendBonusRemainingDuration;
     }
 
     private void OnDisable()
     {
-        ValueBonus.OnGrantBonus -= OnGrantBonus;
+        Spawner_Stats.OnSendBonusRemainingDuration -= OnSendBonusRemainingDuration;
     }
 
     private void Start()
@@ -28,41 +28,27 @@ public class UI_BonusTimer : MonoBehaviour
         m_text.gameObject.SetActive(false);
     }
 
-    private void OnGrantBonus(BonusType type, float value, float duration)
+    private void OnSendBonusRemainingDuration(BonusType type, float duration)
     {
         if (m_typeToTrack != type)
             return;
 
-        StartCoroutine(TimerCoroutine(type, value, duration));
-    }
-
-
-    private IEnumerator TimerCoroutine(BonusType type, float value, float duration)
-    {
-        m_text.gameObject.SetActive(true);
-
-        string prefix = type == BonusType.SpawnFrequency ? spawnRatePrefix : moneyBoostPrefix;
-        float timer = 0f;
-        int minutes = 0;
-        string minutesString = "";
-        int seconds = 0;
-        string secondsString = "";
-
-        while (timer < duration)
+        if (duration <= 0)
         {
-            minutes = (int)(duration - timer) / 60;
-            seconds = (int)(duration - timer) % 60;
-
-            timer += Time.unscaledDeltaTime;
-            yield return new WaitForEndOfFrame();
-
-            minutesString = minutes < 10 ? "0" : "" + minutes.ToString();
-            secondsString = seconds < 10 ? "0" : "" + seconds.ToString();
-
-            m_text.text = prefix + minutesString + ":" + secondsString;
+            m_text.gameObject.SetActive(false);
+            return;
         }
 
-
-        m_text.gameObject.SetActive(false);
+        m_text.gameObject.SetActive(true);
+        
+        string prefix = type == BonusType.SpawnFrequency ? spawnRatePrefix : moneyBoostPrefix;
+        
+        float minutes = duration / 60;
+        string minutesString = minutes < 10 ? "0" : "" + minutes.ToString("F0");
+        float seconds = duration % 60;
+        string secondsString = seconds < 10 ? "0" : "" + seconds.ToString("F0");
+        
+        m_text.text = prefix + minutesString + ":" + secondsString;
     }
+    
 }

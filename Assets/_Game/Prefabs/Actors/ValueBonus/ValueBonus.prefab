@@ -71,8 +71,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_type: 0
   m_bonusValue: 1
-  m_bonusDuration: 30
-  m_health: 250
+  m_bonusDuration: 10
+  m_health: 25
   m_spawnFrequencyFxGroup: {fileID: 7108104493600640664}
   m_boostInitialValueFxGroup: {fileID: 533609467271515645}
   m_valueText: {fileID: 3960234414675091314}

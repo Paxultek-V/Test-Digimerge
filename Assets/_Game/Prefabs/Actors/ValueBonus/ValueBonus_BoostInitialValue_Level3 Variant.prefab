@@ -62,11 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_health
-      value: 40
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_bonusHealth
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_bonusDuration
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,12 +9,12 @@ public class UI_AdditionalTimeBeforeSpawnStops : MonoBehaviour
 
     private void OnEnable()
     {
-        Spawner_ValueActor.OnSendAdditionalTimeBeforeSpawnStopsTimer += OnSendAdditionalTimeBeforeSpawnStopsTimer;
+        Spawner_SpawningCondition.OnSendAdditionalTimeBeforeSpawnStopsTimer += OnSendAdditionalTimeBeforeSpawnStopsTimer;
     }
 
     private void OnDisable()
     {
-        Spawner_ValueActor.OnSendAdditionalTimeBeforeSpawnStopsTimer -= OnSendAdditionalTimeBeforeSpawnStopsTimer;
+        Spawner_SpawningCondition.OnSendAdditionalTimeBeforeSpawnStopsTimer -= OnSendAdditionalTimeBeforeSpawnStopsTimer;
     }
 
     private void Start()
