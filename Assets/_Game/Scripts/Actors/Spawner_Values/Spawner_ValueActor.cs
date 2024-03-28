@@ -222,6 +222,7 @@ public class Spawner_ValueActor : MonoBehaviour
 
     private void OnNextLevelSectionLoaded()
     {
+        
         EnableSpawning();
         m_canShootAllAtOnce = false;
         m_canTrackRemainingValues = false;

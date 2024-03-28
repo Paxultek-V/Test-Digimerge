@@ -632,6 +632,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5559144964197453799, guid: 5853e9224afe746f5aab4dbee3cb95f0, type: 3}
+      propertyPath: m_amountToCollect
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559144964197453799, guid: 5853e9224afe746f5aab4dbee3cb95f0, type: 3}
       propertyPath: m_isLastPiggyBank
       value: 1
       objectReference: {fileID: 0}
