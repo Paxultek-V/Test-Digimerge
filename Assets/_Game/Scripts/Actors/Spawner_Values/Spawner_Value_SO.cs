@@ -16,4 +16,5 @@ public class Spawner_Value_SO : ScriptableObject
     
     [Header("Movement Parameters")]
     public float maxXPosition = 7f;
+    public float smoothTime = 0.3f;
 }

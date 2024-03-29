@@ -7,17 +7,19 @@ public class Spawner_ValueActor : MonoBehaviour
 {
     public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
     public static Action OnAllValuesUsed;
+    public static Action OnAllValuesSpawned;
     public Action<float> OnSendRemainingValueToSpawn;
 
-    [Header("References")] 
-    [SerializeField] private Spawner_Value_SO m_spawnerData = null;
+    [Header("References")] [SerializeField]
+    private Spawner_Value_SO m_spawnerData = null;
+
     [SerializeField] private Spawner_SpawningCondition m_spawnerSpawningCondition = null;
     [SerializeField] private Spawner_Stats m_spawnerStats = null;
     [SerializeField] private Transform m_valuesParent = null;
     [SerializeField] private GameObject m_spawnPosition = null;
 
-    [Header("Specific parameters")] 
-    [SerializeField] private float m_initialAmountToSpawn = 100;
+    [Header("Specific parameters")] [SerializeField]
+    private float m_initialAmountToSpawn = 100;
 
     private List<ValueActor_Value> m_valueActorList = new List<ValueActor_Value>();
     private ValueActor_Value m_valueBuffer;
@@ -25,7 +27,7 @@ public class Spawner_ValueActor : MonoBehaviour
     private float m_remainingValueToSpawn;
     private float m_additionalTimeBeforeSpawnStopsTimer;
     private bool m_canTrackRemainingValues;
-    
+
 
     private void OnEnable()
     {
@@ -36,7 +38,7 @@ public class Spawner_ValueActor : MonoBehaviour
         PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
 
         ValueActor_Value.OnValueKilled += OnValueKilled;
-        
+
         m_spawnerSpawningCondition.OnAdditionalTimeBeforeSpawnStopsOver += OnAdditionalTimeBeforeSpawnStopsOver;
     }
 
@@ -87,9 +89,13 @@ public class Spawner_ValueActor : MonoBehaviour
 
         m_spawnerSpawningCondition.EnterCooldown(1 / m_spawnerStats.CurrentSpawnSpeed);
 
-        if (m_remainingValueToSpawn <= 0 && m_canTrackRemainingValues == false)
-            m_canTrackRemainingValues = true;
+        if (m_remainingValueToSpawn <= 0)
+        {
+            OnAllValuesSpawned?.Invoke();
 
+            if (m_canTrackRemainingValues == false)
+                m_canTrackRemainingValues = true;
+        }
     }
 
     private void OnAdditionalTimeBeforeSpawnStopsOver()
@@ -147,5 +153,4 @@ public class Spawner_ValueActor : MonoBehaviour
     {
         m_canTrackRemainingValues = false;
     }
-
 }

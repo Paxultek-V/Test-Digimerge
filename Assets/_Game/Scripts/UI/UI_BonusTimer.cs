@@ -44,9 +44,9 @@ public class UI_BonusTimer : MonoBehaviour
         string prefix = type == BonusType.SpawnFrequency ? spawnRatePrefix : moneyBoostPrefix;
         
         float minutes = duration / 60;
-        string minutesString = minutes < 10 ? "0" : "" + minutes.ToString("F0");
+        string minutesString = (minutes < 10 ? "0" : "") + minutes.ToString("F0");
         float seconds = duration % 60;
-        string secondsString = seconds < 10 ? "0" : "" + seconds.ToString("F0");
+        string secondsString = (seconds < 10 ? "0" : "") + seconds.ToString("F0");
         
         m_text.text = prefix + minutesString + ":" + secondsString;
     }

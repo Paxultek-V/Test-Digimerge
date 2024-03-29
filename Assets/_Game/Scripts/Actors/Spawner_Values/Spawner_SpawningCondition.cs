@@ -16,6 +16,7 @@ public class Spawner_SpawningCondition : MonoBehaviour
     private float m_cooldownTimer;
     private float m_cooldownDuration;
     private float m_additionalTimeBeforeSpawnStopsTimer;
+    private bool m_isAdditionalTimeNecessary;
     
     public bool CanSpawn
     {
@@ -31,6 +32,8 @@ public class Spawner_SpawningCondition : MonoBehaviour
         Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
         
         PiggyBank.OnTargetAmountReached += OnTargetAmountReached;
+        
+        Spawner_ValueActor.OnAllValuesSpawned += OnAllValuesSpawned;
     }
 
     private void OnDisable()
@@ -42,6 +45,8 @@ public class Spawner_SpawningCondition : MonoBehaviour
         Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
         
         PiggyBank.OnTargetAmountReached -= OnTargetAmountReached;
+        
+        Spawner_ValueActor.OnAllValuesSpawned -= OnAllValuesSpawned;
     }
 
     private void Start()
@@ -69,15 +74,24 @@ public class Spawner_SpawningCondition : MonoBehaviour
     private void OnNextLevelSectionLoaded()
     {
         EnableSpawnInLevel();
+        m_isAdditionalTimeNecessary = true;
     }
 
     private void OnStartLoadingNextSectionLevel()
     {
         DisableSpawnInLevel();
     }
+
+    private void OnAllValuesSpawned()
+    {
+        m_isAdditionalTimeNecessary = false;
+    }
     
     private void OnTargetAmountReached()
     {
+        if(m_isAdditionalTimeNecessary == false)
+            return;
+        
         StartCoroutine(AdditionalTimeBeforeSpawnStops());
     }
 

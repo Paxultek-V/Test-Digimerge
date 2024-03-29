@@ -18,3 +18,5 @@ MonoBehaviour:
   baseSpawnSpeed: 1.5
   baseValueToSpawn: 1
   additionalTimeBeforeSpawnStops: 3
+  maxXPosition: 7
+  smoothTime: 0.1

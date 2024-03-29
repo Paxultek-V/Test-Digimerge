@@ -6,7 +6,9 @@ public class Spawner_Movement : MonoBehaviour
 
     private Vector3 m_desiredPosition;
     private Vector3 m_startPosition;
+    private Vector3 m_progressionPosition;
     private float m_progression;
+    private float m_velocity;
 
     private void OnEnable()
     {
@@ -22,6 +24,7 @@ public class Spawner_Movement : MonoBehaviour
     {
         m_startPosition = transform.position;
         m_desiredPosition = m_startPosition;
+        m_progressionPosition = m_startPosition;
     }
 
     private void Update()
@@ -37,10 +40,12 @@ public class Spawner_Movement : MonoBehaviour
 
         m_desiredPosition.x = Mathf.Clamp(m_desiredPosition.x, -m_spawnerData.maxXPosition, m_spawnerData.maxXPosition);
     }
-    
+
 
     private void UpdateMovement()
     {
-        transform.position = m_desiredPosition;
+        m_progressionPosition.x = Mathf.SmoothDamp(m_progressionPosition.x, m_desiredPosition.x, ref m_velocity,
+            m_spawnerData.smoothTime);
+        transform.position = m_progressionPosition;
     }
 }
