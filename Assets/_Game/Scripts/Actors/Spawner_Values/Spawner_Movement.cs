@@ -22,6 +22,11 @@ public class Spawner_Movement : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         m_startPosition = transform.position;
         m_desiredPosition = m_startPosition;
         m_progressionPosition = m_startPosition;
@@ -32,6 +37,7 @@ public class Spawner_Movement : MonoBehaviour
         UpdateMovement();
     }
 
+    
     private void CalculatePosition(Vector3 cursorPosition)
     {
         m_progression = cursorPosition.x / Screen.width;

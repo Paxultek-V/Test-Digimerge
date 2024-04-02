@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Controller_LevelSection : MonoBehaviour
 {
+    public static Action OnLevelStart;
     public static Action OnStartLoadingNextSectionLevel;
     public static Action OnNextLevelSectionLoaded;
     public static Action OnFinishedLevel;
@@ -37,6 +38,12 @@ public class Controller_LevelSection : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        OnLevelStart?.Invoke();
         m_indexLevelSectionToLoad = 0;
         LoadNextLevelSection(false);
     }
@@ -89,7 +96,7 @@ public class Controller_LevelSection : MonoBehaviour
         OnNextLevelSectionLoaded?.Invoke();
     }
 
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
     {
         if (m_isLastLevelSection)
         {

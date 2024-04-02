@@ -1,22 +1,13 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class Spawner_SpawningCondition : MonoBehaviour
 {
-    public static Action<float> OnSendAdditionalTimeBeforeSpawnStopsTimer;
-    public Action OnAdditionalTimeBeforeSpawnStopsOver;
-    
-    [SerializeField] private Spawner_Value_SO m_spawnerData = null;
-    
     private bool m_isInCooldown; //flag to manage the spawning speed
     private bool m_isPlayerTouchingScreen; //flag to manage spawning  with the input controls
     private bool m_canSpawnInLevel; //flag to manage the overall state of spawning
 
     private float m_cooldownTimer;
     private float m_cooldownDuration;
-    private float m_additionalTimeBeforeSpawnStopsTimer;
-    private bool m_isAdditionalTimeNecessary;
     
     public bool CanSpawn
     {
@@ -30,10 +21,7 @@ public class Spawner_SpawningCondition : MonoBehaviour
 
         Controller_LevelSection.OnNextLevelSectionLoaded += OnNextLevelSectionLoaded;
         Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
-        
-        PiggyBank.OnTargetAmountReached += OnTargetAmountReached;
-        
-        Spawner_ValueActor.OnAllValuesSpawned += OnAllValuesSpawned;
+        Controller_LevelSection.OnFinishedLevel += OnFinishedLevel;
     }
 
     private void OnDisable()
@@ -43,16 +31,7 @@ public class Spawner_SpawningCondition : MonoBehaviour
 
         Controller_LevelSection.OnNextLevelSectionLoaded -= OnNextLevelSectionLoaded;
         Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
-        
-        PiggyBank.OnTargetAmountReached -= OnTargetAmountReached;
-        
-        Spawner_ValueActor.OnAllValuesSpawned -= OnAllValuesSpawned;
-    }
-
-    private void Start()
-    {
-        /*m_isInCooldown = false;
-        EnableSpawnInLevel();*/
+        Controller_LevelSection.OnFinishedLevel -= OnFinishedLevel;
     }
 
     private void Update()
@@ -60,6 +39,7 @@ public class Spawner_SpawningCondition : MonoBehaviour
         ManageCooldown();
     }
 
+    
     private void ManageCooldown()
     {
         if(!m_isInCooldown)
@@ -74,7 +54,6 @@ public class Spawner_SpawningCondition : MonoBehaviour
     private void OnNextLevelSectionLoaded()
     {
         EnableSpawnInLevel();
-        m_isAdditionalTimeNecessary = true;
     }
 
     private void OnStartLoadingNextSectionLevel()
@@ -82,38 +61,10 @@ public class Spawner_SpawningCondition : MonoBehaviour
         DisableSpawnInLevel();
     }
 
-    private void OnAllValuesSpawned()
+    private void OnFinishedLevel()
     {
-        m_isAdditionalTimeNecessary = false;
-    }
-    
-    private void OnTargetAmountReached()
-    {
-        if(m_isAdditionalTimeNecessary == false)
-            return;
-        
-        StartCoroutine(AdditionalTimeBeforeSpawnStops());
-    }
-
-    private IEnumerator AdditionalTimeBeforeSpawnStops()
-    {
-        m_additionalTimeBeforeSpawnStopsTimer = 0f;
-
-        while (m_additionalTimeBeforeSpawnStopsTimer < m_spawnerData.additionalTimeBeforeSpawnStops)
-        {
-            m_additionalTimeBeforeSpawnStopsTimer += Time.unscaledDeltaTime;
-
-            OnSendAdditionalTimeBeforeSpawnStopsTimer?.Invoke(m_spawnerData.additionalTimeBeforeSpawnStops -
-                                                              m_additionalTimeBeforeSpawnStopsTimer);
-
-            yield return new WaitForEndOfFrame();
-        }
-
         DisableSpawnInLevel();
-        
-        OnAdditionalTimeBeforeSpawnStopsOver?.Invoke();
     }
-    
     
     public void EnterCooldown(float cooldownDuration)
     {
@@ -121,13 +72,13 @@ public class Spawner_SpawningCondition : MonoBehaviour
         m_cooldownTimer = 0f;
         m_cooldownDuration = cooldownDuration;
     }
-    
-    public void EnableSpawnInLevel()
+
+    private void EnableSpawnInLevel()
     {
         m_canSpawnInLevel = true;
     }
 
-    public void DisableSpawnInLevel()
+    private void DisableSpawnInLevel()
     {
         m_canSpawnInLevel = false;
     }

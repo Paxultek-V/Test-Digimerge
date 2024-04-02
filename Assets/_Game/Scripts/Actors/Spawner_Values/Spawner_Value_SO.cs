@@ -11,8 +11,6 @@ public class Spawner_Value_SO : ScriptableObject
 
     public float baseSpawnSpeed = 1.5f;
     public float baseValueToSpawn = 1f;
-
-    public float additionalTimeBeforeSpawnStops = 3f;
     
     [Header("Movement Parameters")]
     public float maxXPosition = 7f;

@@ -31,7 +31,7 @@ public class Chain : MonoBehaviour
     }
 
 
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
+    private void OnPiggyBankFinishedCollectingMoney(float amountCollected)
     {
         DestroyChain();
     }

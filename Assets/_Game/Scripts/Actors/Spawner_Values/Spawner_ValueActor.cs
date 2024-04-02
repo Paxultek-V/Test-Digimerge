@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +18,12 @@ public class Spawner_ValueActor : MonoBehaviour
     [SerializeField] private GameObject m_spawnPosition = null;
 
     [Header("Specific parameters")] [SerializeField]
-    private float m_initialAmountToSpawn = 100;
+    private List<float> m_initialAmountToSpawnList = null;
 
     private List<ValueActor_Value> m_valueActorList = new List<ValueActor_Value>();
     private ValueActor_Value m_valueBuffer;
 
+    private int m_initialValueIndex;
     private float m_remainingValueToSpawn;
     private float m_additionalTimeBeforeSpawnStopsTimer;
     private bool m_canTrackRemainingValues;
@@ -32,27 +32,25 @@ public class Spawner_ValueActor : MonoBehaviour
     private void OnEnable()
     {
         Controller_LevelSection.OnNextLevelSectionLoaded += OnNextLevelSectionLoaded;
+        Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
 
         ValueActor_Value.OnHitSplitter += OnHitSplitter;
 
-        PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
+        //PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
 
         ValueActor_Value.OnValueKilled += OnValueKilled;
-
-        m_spawnerSpawningCondition.OnAdditionalTimeBeforeSpawnStopsOver += OnAdditionalTimeBeforeSpawnStopsOver;
     }
 
     private void OnDisable()
     {
         Controller_LevelSection.OnNextLevelSectionLoaded -= OnNextLevelSectionLoaded;
+        Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
 
         ValueActor_Value.OnHitSplitter -= OnHitSplitter;
 
-        PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
+        //PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
 
         ValueActor_Value.OnValueKilled -= OnValueKilled;
-
-        m_spawnerSpawningCondition.OnAdditionalTimeBeforeSpawnStopsOver -= OnAdditionalTimeBeforeSpawnStopsOver;
     }
 
     private void Start()
@@ -62,8 +60,11 @@ public class Spawner_ValueActor : MonoBehaviour
 
     private void Initialize()
     {
-        m_remainingValueToSpawn = m_initialAmountToSpawn;
-        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
+        if (m_initialAmountToSpawnList == null || m_initialAmountToSpawnList.Count == 0)
+        {
+            Debug.LogError("List of initial value to spawn is null or empty", gameObject);
+            return;
+        }
     }
 
     private void Update()
@@ -98,18 +99,6 @@ public class Spawner_ValueActor : MonoBehaviour
         }
     }
 
-    private void OnAdditionalTimeBeforeSpawnStopsOver()
-    {
-        m_remainingValueToSpawn = 0;
-
-        m_canTrackRemainingValues = true;
-
-        if (m_canTrackRemainingValues && m_valueActorList.Count == 0)
-            OnAllValuesUsed?.Invoke();
-
-        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
-    }
-
     private void OnHitSplitter(Vector3 splitPosition, float value)
     {
         SpawnValue(splitPosition, (Vector3.up + Vector3.left).normalized, (int)(value / 2f),
@@ -139,18 +128,31 @@ public class Spawner_ValueActor : MonoBehaviour
         }
     }
 
+    /*
     private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
     {
         if (isLastPiggyBankOfLevel)
             return;
-
-        m_remainingValueToSpawn = amountCollected;
-        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
+        
         m_canTrackRemainingValues = false;
     }
+    */
 
     private void OnNextLevelSectionLoaded()
     {
         m_canTrackRemainingValues = false;
+    }
+
+    private void OnStartLoadingNextSectionLevel()
+    {
+        m_canTrackRemainingValues = false;
+
+        if (m_initialValueIndex < m_initialAmountToSpawnList.Count)
+            m_remainingValueToSpawn = m_initialAmountToSpawnList[m_initialValueIndex];
+
+        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
+
+        if (m_initialValueIndex < m_valueActorList.Count - 1)
+            m_initialValueIndex++;
     }
 }

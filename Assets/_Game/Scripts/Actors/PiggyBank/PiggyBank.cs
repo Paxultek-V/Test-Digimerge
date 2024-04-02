@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PiggyBank : MonoBehaviour
 {
-    public static Action<float, bool> OnPiggyBankFinishedCollectingMoney;
+    public static Action<float> OnPiggyBankFinishedCollectingMoney;
     public static Action<int> OnGrantGemReward;
     public static Action OnTargetAmountNotReached;
     public static Action OnTargetAmountReached;
@@ -13,8 +13,6 @@ public class PiggyBank : MonoBehaviour
     [SerializeField] private float m_amountToCollect = 100f;
 
     [SerializeField] private int m_gemsReward = 1;
-
-    [SerializeField] private bool m_isLastPiggyBankOfLevel = false;
 
     [SerializeField] private Transform m_visualToBump = null;
 
@@ -58,16 +56,21 @@ public class PiggyBank : MonoBehaviour
     {
         if (m_isTargetAmountReached)
         {
-            OnGrantGemReward?.Invoke(m_gemsReward);
-
-            OnPiggyBankFinishedCollectingMoney?.Invoke(m_collectedAmount, m_isLastPiggyBankOfLevel);
-
-            Destroy(gameObject);
+            DestroyPiggyBank();
         }
         else
         {
             OnTargetAmountNotReached?.Invoke();
         }
+    }
+
+    private void DestroyPiggyBank()
+    {
+        OnGrantGemReward?.Invoke(m_gemsReward);
+
+        OnPiggyBankFinishedCollectingMoney?.Invoke(m_collectedAmount);
+
+        Destroy(gameObject);
     }
 
     private void OnHitPiggyBank(float value)
@@ -92,6 +95,7 @@ public class PiggyBank : MonoBehaviour
         {
             m_isTargetAmountReached = true;
             OnTargetAmountReached?.Invoke();
+            DestroyPiggyBank();
         }
     }
 
