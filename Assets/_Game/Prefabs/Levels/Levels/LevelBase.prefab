@@ -243,10 +243,6 @@ PrefabInstance:
       propertyPath: m_valuesParent
       value: 
       objectReference: {fileID: 3080504265182377788}
-    - target: {fileID: 3267242279264971053, guid: e830446b947a74781839386fdb161a90, type: 3}
-      propertyPath: m_initialAmountToSpawn
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8497633987330222066, guid: e830446b947a74781839386fdb161a90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

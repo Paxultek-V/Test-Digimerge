@@ -56,7 +56,7 @@ MonoBehaviour:
   m_spawnerStats: {fileID: 5063255935173985920}
   m_valuesParent: {fileID: 0}
   m_spawnPosition: {fileID: 5364579251687678909}
-  m_initialAmountToSpawn: 100
+  m_initialAmountToSpawn: 2500
 --- !u!114 &3415380459319090035
 MonoBehaviour:
   m_ObjectHideFlags: 0
