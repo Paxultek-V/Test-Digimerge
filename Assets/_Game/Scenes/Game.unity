@@ -1031,8 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_levelPrefabList:
-  - {fileID: 4615634658458082409, guid: aba10370b66f64cb3b437459cbce2686, type: 3}
-  - {fileID: 3424810134464518118, guid: e7e13bdd6c5da44e588d97d3109ed41c, type: 3}
+  - {fileID: 4500238003761338772, guid: fef65cbc7d597465cb67e5fc0301a2ed, type: 3}
   m_levelParent: {fileID: 386099674}
   m_currentLevelIndexSaveTag: CurrentLevelIndex
 --- !u!1 &561743444

@@ -302,9 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2987afbda496f477fab43946089771e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_amountToCollect: 5
+  m_amountToCollect: 1000
   m_gemsReward: 1
-  m_isLastPiggyBankOfLevel: 0
   m_visualToBump: {fileID: 4087269361242423761}
   m_scaleController: {fileID: 5680491944593892909}
   m_textValue: {fileID: 5948031833925274878}
