@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5063255935173985920}
   - component: {fileID: 1145474817893210759}
   - component: {fileID: 7259854381298182775}
+  - component: {fileID: 7071179713584573513}
+  - component: {fileID: 7075865504551755282}
   m_Layer: 0
   m_Name: Spawner_ValueActor
   m_TagString: Untagged
@@ -56,7 +58,7 @@ MonoBehaviour:
   m_spawnerStats: {fileID: 5063255935173985920}
   m_valuesParent: {fileID: 0}
   m_spawnPosition: {fileID: 5364579251687678909}
-  m_initialAmountToSpawn: 2500
+  m_initialAmountToSpawnList: []
 --- !u!114 &3415380459319090035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce19ed090bce40a8ba879b8155a7080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
 --- !u!114 &5063255935173985920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +111,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_valueToSpawnText: {fileID: 5145317106124858618}
   m_spawnerValueActor: {fileID: 3267242279264971053}
+--- !u!114 &7071179713584573513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366325266297468498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3bf076deb414cc3a48381c848e7eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &7075865504551755282
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366325266297468498}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87fa7e995010441fcb18fcd260532baf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1101869652927739156
 GameObject:
   m_ObjectHideFlags: 0
