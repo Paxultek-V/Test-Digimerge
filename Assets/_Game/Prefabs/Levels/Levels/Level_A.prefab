@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.data[0]
@@ -23,11 +23,11 @@ PrefabInstance:
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.data[1]
       value: 
-      objectReference: {fileID: 8256843168912254968, guid: 4cf18d71cf7044029ad95019f50d7722, type: 3}
+      objectReference: {fileID: 5507550413668686392, guid: 97019eb536d884102901d12606a86c67, type: 3}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.data[2]
       value: 
-      objectReference: {fileID: 5402506488393562255, guid: d35f1e0f39c654c399448016832b95f0, type: 3}
+      objectReference: {fileID: 5507550413668686392, guid: 97019eb536d884102901d12606a86c67, type: 3}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.data[3]
       value: 
@@ -74,23 +74,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_initialAmountToSpawnList.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_initialAmountToSpawnList.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
-      propertyPath: m_initialAmountToSpawnList.Array.data[1]
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
-      propertyPath: m_initialAmountToSpawnList.Array.data[2]
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_initialAmountToSpawnList.Array.data[1]
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_initialAmountToSpawnList.Array.data[2]
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_initialAmountToSpawnList.Array.data[3]
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
