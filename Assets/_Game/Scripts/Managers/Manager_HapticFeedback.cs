@@ -4,39 +4,51 @@ using UnityEngine;
 
 public class Manager_HapticFeedback : MonoBehaviour
 {
+    public static Action<bool> OnToggleHaptic;
+
     private bool m_isHapticEnabled;
-    
+
     private void OnEnable()
     {
         Taptic.tapticOn = true;
 
         Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
-        
+
         Spawner_ValueActor.OnSpawnValue += OnSpawnValue;
         ValueActor_Value.OnHitValueBumper += OnHitValueBumper;
+
+        Button_ToggleHaptic.OnToggleHaptic_ButtonPressed += OnToggleHaptic_ButtonPressed;
     }
 
     private void OnDisable()
     {
         Taptic.tapticOn = false;
-        
+
         Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
-        
+
         Spawner_ValueActor.OnSpawnValue -= OnSpawnValue;
         ValueActor_Value.OnHitValueBumper -= OnHitValueBumper;
+        
+        Button_ToggleHaptic.OnToggleHaptic_ButtonPressed -= OnToggleHaptic_ButtonPressed;
     }
 
-
-    public void EnableHaptic()
+    private void Start()
     {
         m_isHapticEnabled = true;
+        OnToggleHaptic?.Invoke(m_isHapticEnabled);
     }
 
-    public void DisableHaptic()
+    private void OnToggleHaptic_ButtonPressed()
     {
-        m_isHapticEnabled = false;
+        ToggleHaptic(!m_isHapticEnabled);
     }
-    
+
+    public void ToggleHaptic(bool state)
+    {
+        m_isHapticEnabled = state;
+        OnToggleHaptic?.Invoke(m_isHapticEnabled);
+    }
+
 
     private void OnBroadcastGameState(GameState state)
     {
@@ -66,21 +78,20 @@ public class Manager_HapticFeedback : MonoBehaviour
     {
         PlayLightHaptic();
     }
-    
+
     private void PlayLightHaptic()
     {
-        if(!m_isHapticEnabled)
+        if (!m_isHapticEnabled)
             return;
-        
+
         Taptic.Light();
     }
 
     private void PlayHeavyHaptic()
     {
-        if(!m_isHapticEnabled)
+        if (!m_isHapticEnabled)
             return;
-        
+
         Taptic.Heavy();
     }
-
 }
