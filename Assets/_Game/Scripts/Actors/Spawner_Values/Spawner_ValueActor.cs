@@ -84,8 +84,13 @@ public class Spawner_ValueActor : MonoBehaviour
         if (m_remainingValueToSpawn <= 0)
             return;
 
+        float valueToSpawn = m_spawnerStats.CurrentValueToSpawn;
+
+        if (m_remainingValueToSpawn < valueToSpawn)
+            valueToSpawn = m_remainingValueToSpawn;
+        
         SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward,
-            m_spawnerStats.CurrentValueToSpawn,
+            valueToSpawn,
             1f);
 
         OnSpawnValueFromCanon?.Invoke();
