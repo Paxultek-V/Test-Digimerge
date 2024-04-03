@@ -147,7 +147,7 @@ public class ValueBumper : MonoBehaviour
                 m_bumpEffectText.text = "+" + m_bumpEffect.BumpValue.ToString("F0");
                 break;
             case ValueBumpEffect.Multiply:
-                m_bumpEffectText.text = "x" + m_bumpEffect.BumpValue.ToString("F1");
+                m_bumpEffectText.text = "x" + m_bumpEffect.BumpValue.ToString("F0");
                 break;
             case ValueBumpEffect.Subtract:
                 m_bumpEffectText.text = "-" + m_bumpEffect.BumpValue.ToString("F0");
