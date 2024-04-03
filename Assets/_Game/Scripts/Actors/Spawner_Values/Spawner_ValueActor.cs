@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner_ValueActor : MonoBehaviour
 {
     public static Action<ValueActor_Value, Vector3, float, float> OnSpawnValue;
+    public static Action OnSpawnValueFromCanon;
     public static Action OnAllValuesUsed;
     public static Action OnAllValuesSpawned;
     public Action<float> OnSendRemainingValueToSpawn;
@@ -69,6 +70,9 @@ public class Spawner_ValueActor : MonoBehaviour
 
     private void Update()
     {
+        if(UI_Debug.IsDebugPanelOpen)
+            return;
+        
         ManageSpawningFromCanon();
     }
 
@@ -80,10 +84,16 @@ public class Spawner_ValueActor : MonoBehaviour
         if (m_remainingValueToSpawn <= 0)
             return;
 
+        float valueToSpawn = m_spawnerStats.CurrentValueToSpawn;
+
+        if (m_remainingValueToSpawn < valueToSpawn)
+            valueToSpawn = m_remainingValueToSpawn;
+        
         SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward,
-            m_spawnerStats.CurrentValueToSpawn,
+            valueToSpawn,
             1f);
 
+        OnSpawnValueFromCanon?.Invoke();
 
         m_remainingValueToSpawn -= m_spawnerStats.CurrentValueToSpawn;
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);

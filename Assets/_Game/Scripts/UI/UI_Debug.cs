@@ -1,10 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UI_Debug : MonoBehaviour
 {
+    public static bool IsDebugPanelOpen;
+    
     [SerializeField] private Animator m_animator = null;
 
     private bool m_isPanelOpen;
@@ -12,6 +11,7 @@ public class UI_Debug : MonoBehaviour
     private void Start()
     {
         m_isPanelOpen = false;
+        IsDebugPanelOpen = m_isPanelOpen;
         m_animator.SetTrigger("Disappear");
     }
 
@@ -19,7 +19,8 @@ public class UI_Debug : MonoBehaviour
     public void TogglePanel()
     {
         m_isPanelOpen = !m_isPanelOpen;
-
+        IsDebugPanelOpen = m_isPanelOpen;
+        
         if (m_isPanelOpen)
             m_animator.SetTrigger("Appear");
         else

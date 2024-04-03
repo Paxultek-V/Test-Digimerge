@@ -34,6 +34,9 @@ public class Spawner_Movement : MonoBehaviour
 
     private void Update()
     {
+        if(UI_Debug.IsDebugPanelOpen)
+            return;
+        
         UpdateMovement();
     }
 
