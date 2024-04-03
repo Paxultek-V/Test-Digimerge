@@ -76,6 +76,9 @@ public class Spawner_ValueBonus : MonoBehaviour
         m_valueBonusToSpawnBuffer =
             Random.Range(0f, 1f) < 0.5f ? m_valueMoneyBonusPrefab : m_valueSpawnSpeedBonusPrefab;
 
+        if(m_valueBonusToSpawnBuffer == null)
+            return;
+        
         m_valueBonusBuffer =
             Instantiate(m_valueBonusToSpawnBuffer, GetRandomSpawnPosition(), Quaternion.identity, m_bonusParent);
 

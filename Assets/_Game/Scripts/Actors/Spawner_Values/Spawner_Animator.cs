@@ -23,6 +23,7 @@ public class Spawner_Animator : MonoBehaviour
 
     private void OnSpawnValue(ValueActor_Value value, Vector3 pos, float a, float b)
     {
+        m_animator.ResetTrigger("Shoot");
         m_animator.SetTrigger("Shoot");
     }
 }

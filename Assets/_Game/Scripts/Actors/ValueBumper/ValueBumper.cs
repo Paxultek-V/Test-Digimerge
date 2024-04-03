@@ -20,8 +20,6 @@ public class BumpEffect
     [SerializeField] public ValueBumpEffect ValueBumpEffect;
 
     [SerializeField] public float BumpValue = 1f;
-
-    [SerializeField] public ParticleSystem FxPrefab = null;
 }
 
 [Serializable]
@@ -83,7 +81,6 @@ public class ValueBumper : MonoBehaviour
     private void Start()
     {
         UpdateLight();
-        UpdateFx();
         UpdateEffectMaterial();
         UpdateBumpEffectText();
     }
@@ -128,13 +125,6 @@ public class ValueBumper : MonoBehaviour
         }
     }
 
-    private void UpdateFx()
-    {
-        if (m_bumpEffect.FxPrefab != null)
-        {
-            Instantiate(m_bumpEffect.FxPrefab, transform.position, Quaternion.identity, transform);
-        }
-    }
 
     private void UpdateBumpEffectText()
     {

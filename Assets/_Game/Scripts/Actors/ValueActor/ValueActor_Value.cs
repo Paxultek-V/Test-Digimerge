@@ -213,7 +213,7 @@ public class ValueActor_Value : MonoBehaviour
         if (actorValue != this)
             return;
 
-        m_isInCooldownCollision = true;
+        m_isInCooldownCollision = false;
 
         SetValue(value);
 
