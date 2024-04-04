@@ -30,7 +30,6 @@ public class PlatformMovement : MonoBehaviour
         m_progression = Mathf.PingPong(m_timer, 1f);
 
         m_controlledTransform .position = Vector3.Lerp(m_startPosition.transform.position, m_endPosition.transform.position, m_progression);
-
     }
 
 
