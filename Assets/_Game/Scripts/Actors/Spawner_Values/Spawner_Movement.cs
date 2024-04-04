@@ -1,23 +1,30 @@
+using TreeEditor;
 using UnityEngine;
 
 public class Spawner_Movement : MonoBehaviour
 {
     [SerializeField] private Spawner_Value_SO m_spawnerData = null;
 
-    private Vector3 m_desiredPosition;
-    private Vector3 m_startPosition;
+    public Vector3 m_desiredPosition;
+    public Vector3 m_startPosition;
+    public Vector3 m_startCursorPosition;
+    public Vector3 m_currentCursorPosition;
     private Vector3 m_progressionPosition;
     private float m_progression;
     private float m_velocity;
 
     private void OnEnable()
     {
-        Controller.OnHold += CalculatePosition;
+        Controller.OnTapBegin += OnTapBegin;
+        Controller.OnHold += OnHold;
+        Controller.OnRelease += OnRelease;
     }
 
     private void OnDisable()
     {
-        Controller.OnHold -= CalculatePosition;
+        Controller.OnTapBegin -= OnTapBegin;
+        Controller.OnHold -= OnHold;
+        Controller.OnRelease -= OnRelease;
     }
 
     private void Start()
@@ -40,14 +47,30 @@ public class Spawner_Movement : MonoBehaviour
         UpdateMovement();
     }
 
-    
-    private void CalculatePosition(Vector3 cursorPosition)
+    private void OnTapBegin(Vector3 cursorPosition)
     {
-        m_progression = cursorPosition.x / Screen.width;
+        m_startPosition = transform.position;
+        m_startCursorPosition = cursorPosition;
+    }
 
-        m_desiredPosition.x = m_progression * (m_spawnerData.maxXPosition * 2) - m_spawnerData.maxXPosition;
+    private void OnHold(Vector3 cursorPosition)
+    {
+        m_currentCursorPosition = cursorPosition;
 
+        Vector3 cursorPositionDiff = m_currentCursorPosition - m_startCursorPosition;
+
+        m_desiredPosition = m_startPosition;
+        m_desiredPosition.x = m_startPosition.x + cursorPositionDiff.x * (1f/m_spawnerData.pixelPerMeter);
+        
         m_desiredPosition.x = Mathf.Clamp(m_desiredPosition.x, -m_spawnerData.maxXPosition, m_spawnerData.maxXPosition);
+    }
+
+    private void OnRelease(Vector3 cursorPosition)
+    {
+        m_startPosition = transform.position;
+        m_startCursorPosition = cursorPosition;
+        m_currentCursorPosition = cursorPosition;
+        m_desiredPosition = transform.position;
     }
 
 

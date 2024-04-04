@@ -17,6 +17,6 @@ MonoBehaviour:
   splitEjectionStrength: 1
   baseSpawnSpeed: 3
   baseValueToSpawn: 1
-  additionalTimeBeforeSpawnStops: 3
   maxXPosition: 7
   smoothTime: 0.1
+  pixelPerMeter: 50
