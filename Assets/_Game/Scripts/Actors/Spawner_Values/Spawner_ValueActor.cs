@@ -19,53 +19,32 @@ public class Spawner_ValueActor : MonoBehaviour
     [SerializeField] private GameObject m_spawnPosition = null;
 
     [Header("Specific parameters")] [SerializeField]
-    private List<float> m_initialAmountToSpawnList = null;
+    private float m_initialAmountToSpawn = 50;
 
     private List<ValueActor_Value> m_valueActorList = new List<ValueActor_Value>();
     private ValueActor_Value m_valueBuffer;
 
-    private int m_initialValueIndex;
     private float m_remainingValueToSpawn;
-    private float m_additionalTimeBeforeSpawnStopsTimer;
     private bool m_canTrackRemainingValues;
 
 
     private void OnEnable()
     {
-        Controller_LevelSection.OnNextLevelSectionLoaded += OnNextLevelSectionLoaded;
-        Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
-
         ValueActor_Value.OnHitSplitter += OnHitSplitter;
-
-        //PiggyBank.OnPiggyBankFinishedCollectingMoney += OnPiggyBankFinishedCollectingMoney;
-
         ValueActor_Value.OnValueKilled += OnValueKilled;
     }
 
     private void OnDisable()
     {
-        Controller_LevelSection.OnNextLevelSectionLoaded -= OnNextLevelSectionLoaded;
-        Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
-
         ValueActor_Value.OnHitSplitter -= OnHitSplitter;
-
-        //PiggyBank.OnPiggyBankFinishedCollectingMoney -= OnPiggyBankFinishedCollectingMoney;
-
         ValueActor_Value.OnValueKilled -= OnValueKilled;
     }
 
     private void Start()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        if (m_initialAmountToSpawnList == null || m_initialAmountToSpawnList.Count == 0)
-        {
-            Debug.LogError("List of initial value to spawn is null or empty", gameObject);
-            return;
-        }
+        m_remainingValueToSpawn = m_initialAmountToSpawn;
+        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
+        m_canTrackRemainingValues = false;
     }
 
     private void Update()
@@ -95,7 +74,7 @@ public class Spawner_ValueActor : MonoBehaviour
 
         OnSpawnValueFromCanon?.Invoke();
 
-        m_remainingValueToSpawn -= m_spawnerStats.CurrentValueToSpawn;
+        m_remainingValueToSpawn -= valueToSpawn;
         OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
 
         m_spawnerSpawningCondition.EnterCooldown(1 / m_spawnerStats.CurrentSpawnSpeed);
@@ -138,31 +117,4 @@ public class Spawner_ValueActor : MonoBehaviour
         }
     }
 
-    /*
-    private void OnPiggyBankFinishedCollectingMoney(float amountCollected, bool isLastPiggyBankOfLevel)
-    {
-        if (isLastPiggyBankOfLevel)
-            return;
-        
-        m_canTrackRemainingValues = false;
-    }
-    */
-
-    private void OnNextLevelSectionLoaded()
-    {
-        m_canTrackRemainingValues = false;
-    }
-
-    private void OnStartLoadingNextSectionLevel()
-    {
-        m_canTrackRemainingValues = false;
-
-        if (m_initialValueIndex < m_initialAmountToSpawnList.Count)
-            m_remainingValueToSpawn = m_initialAmountToSpawnList[m_initialValueIndex];
-
-        OnSendRemainingValueToSpawn?.Invoke(m_remainingValueToSpawn);
-
-        if (m_initialValueIndex < m_valueActorList.Count - 1)
-            m_initialValueIndex++;
-    }
 }

@@ -19,9 +19,12 @@ public class Spawner_SpawningCondition : MonoBehaviour
         Controller.OnTapBegin += StartSpawning;
         Controller.OnRelease += StopSpawning;
 
-        Controller_LevelSection.OnNextLevelSectionLoaded += OnNextLevelSectionLoaded;
-        Controller_LevelSection.OnStartLoadingNextSectionLevel += OnStartLoadingNextSectionLevel;
-        Controller_LevelSection.OnFinishedLevel += OnFinishedLevel;
+        Controller_Level.OnLevelStart += EnableSpawnInLevel;
+        Controller_Level.OnFinishedLevel += DisableSpawnInLevel;
+        
+        Controller_LevelSection.OnNextLevelSectionLoaded += EnableSpawnInLevel;
+        Controller_LevelSection.OnStartLoadingNextSectionLevel += DisableSpawnInLevel;
+        Controller_LevelSection.OnFinishedLevel += DisableSpawnInLevel;
     }
 
     private void OnDisable()
@@ -29,9 +32,12 @@ public class Spawner_SpawningCondition : MonoBehaviour
         Controller.OnTapBegin -= StartSpawning;
         Controller.OnRelease -= StopSpawning;
 
-        Controller_LevelSection.OnNextLevelSectionLoaded -= OnNextLevelSectionLoaded;
-        Controller_LevelSection.OnStartLoadingNextSectionLevel -= OnStartLoadingNextSectionLevel;
-        Controller_LevelSection.OnFinishedLevel -= OnFinishedLevel;
+        Controller_Level.OnLevelStart -= EnableSpawnInLevel;
+        Controller_Level.OnFinishedLevel -= DisableSpawnInLevel;
+        
+        Controller_LevelSection.OnNextLevelSectionLoaded -= EnableSpawnInLevel;
+        Controller_LevelSection.OnStartLoadingNextSectionLevel -= DisableSpawnInLevel;
+        Controller_LevelSection.OnFinishedLevel -= DisableSpawnInLevel;
     }
 
     private void Update()
@@ -51,21 +57,7 @@ public class Spawner_SpawningCondition : MonoBehaviour
             m_isInCooldown = false;
     }
 
-    private void OnNextLevelSectionLoaded()
-    {
-        EnableSpawnInLevel();
-    }
 
-    private void OnStartLoadingNextSectionLevel()
-    {
-        DisableSpawnInLevel();
-    }
-
-    private void OnFinishedLevel()
-    {
-        DisableSpawnInLevel();
-    }
-    
     public void EnterCooldown(float cooldownDuration)
     {
         m_isInCooldown = true;

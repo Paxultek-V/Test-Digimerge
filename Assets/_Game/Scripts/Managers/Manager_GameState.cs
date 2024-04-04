@@ -20,6 +20,7 @@ public class Manager_GameState : MonoBehaviour
     {
         Button_StartGame.OnStartGameButtonPressed += OnStartGameButtonPressed;
         Controller_LevelSection.OnFinishedLevel += OnFinishedLevel;
+        Controller_Level.OnFinishedLevel += OnFinishedLevel;
         PiggyBank.OnTargetAmountNotReached += OnTargetAmountNotReached;
     }
 
@@ -27,6 +28,7 @@ public class Manager_GameState : MonoBehaviour
     {
         Button_StartGame.OnStartGameButtonPressed -= OnStartGameButtonPressed;
         Controller_LevelSection.OnFinishedLevel -= OnFinishedLevel;
+        Controller_Level.OnFinishedLevel -= OnFinishedLevel;
         PiggyBank.OnTargetAmountNotReached -= OnTargetAmountNotReached;
     }
 
