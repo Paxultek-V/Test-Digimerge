@@ -14,6 +14,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Hose_Plastic
     second: {fileID: 2100000, guid: 287eb9384170357458f21c5080104d0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Inner
+    second: {fileID: 2100000, guid: 15f04e1fd2e112448904a354a157ba76, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
