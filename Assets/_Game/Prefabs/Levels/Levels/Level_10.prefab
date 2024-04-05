@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011260816958835120, guid: 3263c639175ed44ecac62502cd8a1da6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.17
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 6011260816958835120, guid: 3263c639175ed44ecac62502cd8a1da6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -174,7 +174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3731699896805875317, guid: a5e63eaf2f0ac45b59023fbbc469f368, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.92
+      value: -6.28
       objectReference: {fileID: 0}
     - target: {fileID: 3731699896805875317, guid: a5e63eaf2f0ac45b59023fbbc469f368, type: 3}
       propertyPath: m_LocalPosition.y
@@ -236,7 +236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 594029068501613219, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_Name
-      value: Level_J
+      value: Level_10
       objectReference: {fileID: 0}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.size
