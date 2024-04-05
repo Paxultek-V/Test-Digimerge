@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Module_Movement : MonoBehaviour
+public class Module_Movement_BackForth : MonoBehaviour
 {
     [SerializeField] private Transform m_controlledTransform = null;
     
@@ -44,12 +44,12 @@ public class Module_Movement : MonoBehaviour
 
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(Module_Movement))]
+[CustomEditor(typeof(Module_Movement_BackForth))]
 public class Module_Movement_Editor : Editor
 {
     public void OnSceneGUI()
     {
-        var linkedObject = target as Module_Movement;
+        var linkedObject = target as Module_Movement_BackForth;
         linkedObject.m_startPosition = Handles.PositionHandle(linkedObject.m_startPosition, Quaternion.identity);
         linkedObject.m_endPosition = Handles.PositionHandle(linkedObject.m_endPosition, Quaternion.identity);
     }
