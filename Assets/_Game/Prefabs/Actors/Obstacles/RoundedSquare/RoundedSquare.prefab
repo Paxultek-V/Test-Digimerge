@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4887673957710892923}
   - component: {fileID: 5771073733446905422}
+  - component: {fileID: 431419083533502174}
   m_Layer: 0
   m_Name: RoundedSquare
   m_TagString: Untagged
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_controlledTransform: {fileID: 4887673957710892923}
   m_rotationSpeed: 50
+--- !u!114 &431419083533502174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9139134104023583843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603071545444f43379bee9748756a4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementType: 0
 --- !u!1001 &2523239050931632606
 PrefabInstance:
   m_ObjectHideFlags: 0

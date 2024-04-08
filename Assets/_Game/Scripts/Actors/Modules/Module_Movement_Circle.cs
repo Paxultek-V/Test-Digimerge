@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class Module_Movement_Circle : MonoBehaviour
+public class Module_Movement_Circle : Module_Movement
 {
     [SerializeField] private float m_radius = 5f;
 

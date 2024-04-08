@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1745495162121007499}
   - component: {fileID: 3609641629787244987}
   - component: {fileID: 1513709581189890842}
+  - component: {fileID: 3363745937875782223}
   m_Layer: 0
   m_Name: Splitter
   m_TagString: Untagged
@@ -67,6 +68,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552ca2dbee0bd4024947ea8f3a0738da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3363745937875782223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8878609769147633793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603071545444f43379bee9748756a4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementType: 0
 --- !u!1001 &1938100360275121690
 PrefabInstance:
   m_ObjectHideFlags: 0

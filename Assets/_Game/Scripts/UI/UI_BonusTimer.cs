@@ -15,15 +15,22 @@ public class UI_BonusTimer : MonoBehaviour
 
     private void OnEnable()
     {
+        Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
         Spawner_Stats.OnSendBonusRemainingDuration += OnSendBonusRemainingDuration;
     }
 
     private void OnDisable()
     {
+        Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
         Spawner_Stats.OnSendBonusRemainingDuration -= OnSendBonusRemainingDuration;
     }
 
     private void Start()
+    {
+        m_text.gameObject.SetActive(false);
+    }
+
+    private void OnBroadcastGameState(GameState state)
     {
         m_text.gameObject.SetActive(false);
     }

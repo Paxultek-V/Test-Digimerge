@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Module_Movement_BackForth : MonoBehaviour
+public class Module_Movement_BackForth : Module_Movement
 {
     [SerializeField] private Transform m_controlledTransform = null;
     

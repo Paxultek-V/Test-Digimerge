@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4425432641298652042}
   - component: {fileID: 8921193280238296963}
   - component: {fileID: 8569682911041125992}
+  - component: {fileID: 7905498344457917795}
   m_Layer: 0
   m_Name: ValueBonus
   m_TagString: Untagged
@@ -77,6 +78,19 @@ MonoBehaviour:
   m_boostInitialValueFxGroup: {fileID: 533609467271515645}
   m_valueText: {fileID: 3960234414675091314}
   m_transformToBump: {fileID: 4074584973850597429}
+--- !u!114 &7905498344457917795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14964958920753813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 603071545444f43379bee9748756a4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_movementType: 0
 --- !u!1 &533609467271515645
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 250
+  m_text: 25
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
