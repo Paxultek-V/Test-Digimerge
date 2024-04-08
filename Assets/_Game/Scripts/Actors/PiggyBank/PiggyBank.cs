@@ -91,6 +91,9 @@ public class PiggyBank : MonoBehaviour
 
     private void CheckTargetAmountReachedCondition()
     {
+        if(m_starsUnlocked >= m_amountThresholdList.Count)
+            return;
+        
         if (m_collectedAmount >= m_amountThresholdList[m_starsUnlocked])
         {
             m_starsUnlocked++;

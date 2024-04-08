@@ -6,6 +6,9 @@ public static class FormatIdleNumber
         int count = 0;
         string unit = "";
 
+        if (a < 1000)
+            return a.ToString("F0");
+        
         while (a >= 1000f)
         {
             a /= 1000;
@@ -26,6 +29,7 @@ public static class FormatIdleNumber
 
         string number = "";
 
+        
         if (a > 100)
             number = a.ToString("F0");
         else if (a > 10)

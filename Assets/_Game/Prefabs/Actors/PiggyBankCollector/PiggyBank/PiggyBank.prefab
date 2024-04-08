@@ -375,10 +375,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $xx/xx
+  m_text: $999M
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f891b8412c79ed6458f0363ba8ea7473, type: 2}
+  m_sharedMaterial: {fileID: -5481826343638674389, guid: f891b8412c79ed6458f0363ba8ea7473, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -486,15 +486,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalScale.x
-      value: 125
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalScale.y
-      value: 125
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalScale.z
-      value: 125
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -510,31 +510,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7064338
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7064338
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.030843573
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.030843573
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -551,11 +551,15 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c68ab076d6c71408d8c2cef253571f2c, type: 2}
+      objectReference: {fileID: 2100000, guid: 28cdace7b6877bd438c353e90cb1f784, type: 2}
     - target: {fileID: -7511558181221131132, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: f751ab35aed294cf3859d26f530d2ca8, type: 2}
+      objectReference: {fileID: 2100000, guid: ef4d46b7fdc74d94ba9bd37a6601c171, type: 2}
+    - target: {fileID: -5754084199372789682, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2109010477876411806, guid: dedd8a4a7eda00c4f84246fa6b61a501, type: 3}
     - target: {fileID: 919132149155446097, guid: 5ae319bf89e95428f9dc659d62f14a09, type: 3}
       propertyPath: m_Name
       value: PiggyBank
