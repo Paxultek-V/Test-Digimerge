@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -7,10 +8,11 @@ public class PiggyBank : MonoBehaviour
 {
     public static Action<float> OnPiggyBankFinishedCollectingMoney;
     public static Action<int> OnGrantGemReward;
+    public static Action<int> OnBroadcastStars;
     public static Action OnTargetAmountNotReached;
     public static Action OnTargetAmountReached;
 
-    [SerializeField] private float m_amountToCollect = 100f;
+    [SerializeField] private List<float> m_amountThresholdList = null;
 
     [SerializeField] private int m_gemsReward = 1;
 
@@ -24,13 +26,12 @@ public class PiggyBank : MonoBehaviour
     private Coroutine m_delayCoroutine;
     private Tweener m_tweener;
     private float m_collectedAmount;
+    private int m_starsUnlocked;
 
     private float m_progression
     {
-        get => m_collectedAmount / m_amountToCollect;
+        get => m_collectedAmount / m_amountThresholdList[^1];
     }
-
-    private bool m_isTargetAmountReached;
 
     private void OnEnable()
     {
@@ -47,6 +48,7 @@ public class PiggyBank : MonoBehaviour
     private void Start()
     {
         m_collectedAmount = 0;
+        m_starsUnlocked = 0;
         UpdateText();
         UpdateScale();
     }
@@ -54,8 +56,9 @@ public class PiggyBank : MonoBehaviour
 
     private void OnAllValuesUsed()
     {
-        if (m_isTargetAmountReached)
+        if (m_starsUnlocked > 0)
         {
+            OnTargetAmountReached?.Invoke();
             DestroyPiggyBank();
         }
         else
@@ -83,19 +86,17 @@ public class PiggyBank : MonoBehaviour
 
         PlayTweenAnimation();
 
-        if (m_isTargetAmountReached)
-            return;
-
         CheckTargetAmountReachedCondition();
     }
 
     private void CheckTargetAmountReachedCondition()
     {
-        if (m_collectedAmount >= m_amountToCollect)
+        if (m_collectedAmount >= m_amountThresholdList[m_starsUnlocked])
         {
-            m_isTargetAmountReached = true;
-            OnTargetAmountReached?.Invoke();
-            DestroyPiggyBank();
+            m_starsUnlocked++;
+            m_starsUnlocked = Mathf.Clamp(m_starsUnlocked, 0, 3);
+
+            OnBroadcastStars?.Invoke(m_starsUnlocked);
         }
     }
 
@@ -108,7 +109,7 @@ public class PiggyBank : MonoBehaviour
 
         m_tweener = m_visualToBump.DOPunchScale(Vector3.one / 2f, 0.33f, 1);
     }
-    
+
     private void UpdateScale()
     {
         m_scaleController.localScale = Vector3.one + Vector3.one * Mathf.Clamp01(m_progression);
@@ -116,7 +117,11 @@ public class PiggyBank : MonoBehaviour
 
     private void UpdateText()
     {
-        m_textValue.text = m_collectedAmount.FormatNumber();
-        m_textValue.text = m_amountToCollect.FormatNumber();
+        if (m_collectedAmount == 0)
+        {
+            m_textValue.text = "$0";
+        }
+
+        m_textValue.text = "$" + m_collectedAmount.FormatNumber();
     }
 }
