@@ -568,11 +568,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687241161765079324, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_text
-      value: -15
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6701834643935656188, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_LocalPosition.x
