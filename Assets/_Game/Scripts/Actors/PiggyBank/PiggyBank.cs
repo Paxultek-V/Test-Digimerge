@@ -116,6 +116,7 @@ public class PiggyBank : MonoBehaviour
 
     private void UpdateText()
     {
-        m_textValue.text = m_collectedAmount.ToString("F0") + "/" + m_amountToCollect.ToString("F0");
+        m_textValue.text = m_collectedAmount.FormatNumber();
+        m_textValue.text = m_amountToCollect.FormatNumber();
     }
 }

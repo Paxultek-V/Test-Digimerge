@@ -238,20 +238,8 @@ public class ValueActor_Value : MonoBehaviour
 
     private void UpdateText()
     {
-        m_text.text = "$" + m_value.ToString("F0");
+        m_text.text = "$" + m_value.FormatNumber();
         OnSendValueLength?.Invoke(m_text.text.Length);
     }
 
-    public string FormatText()
-    {
-        string value = "";
-
-        if (m_value < 10)
-            value = m_value.ToString("F1");
-        else
-            value = m_value.ToString("F0");
-
-        return "$" + value;
-    }
-    
 }
