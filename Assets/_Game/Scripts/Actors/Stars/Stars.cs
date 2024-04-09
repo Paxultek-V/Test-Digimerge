@@ -67,8 +67,6 @@ public class Stars : MonoBehaviour
 
         star.transform.position = m_starSpawnPosition.position;
 
-        //star.transform.DOMove(targetPosition, 0.5f);
-
         star.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1)
             .OnComplete(() => star.transform.DOMove(targetPosition, 0.5f)
             .OnComplete(() => star.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1)));

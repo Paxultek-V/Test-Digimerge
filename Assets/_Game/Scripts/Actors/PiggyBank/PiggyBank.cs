@@ -93,16 +93,37 @@ public class PiggyBank : MonoBehaviour
     {
         if(m_starsUnlocked >= m_amountThresholdList.Count)
             return;
-        
-        if (m_collectedAmount >= m_amountThresholdList[m_starsUnlocked])
-        {
-            m_starsUnlocked++;
-            m_starsUnlocked = Mathf.Clamp(m_starsUnlocked, 0, 3);
 
-            OnBroadcastStars?.Invoke(m_starsUnlocked);
+
+        int starsToUnlock = DetermineStarsToUnlock();
+
+        for (int i = 0; i < starsToUnlock; i++)
+        {
+            UnlockStar();
         }
     }
 
+    private int DetermineStarsToUnlock()
+    {
+        for (int i = m_amountThresholdList.Count - 1; i >= 0; i--)
+        {
+            if (m_collectedAmount > m_amountThresholdList[i])
+            {
+                return (i - m_starsUnlocked) + 1;
+            }
+        }
+
+        return 0;
+    }
+    
+    private void UnlockStar()
+    {
+        m_starsUnlocked++;
+        m_starsUnlocked = Mathf.Clamp(m_starsUnlocked, 0, 3);
+
+        OnBroadcastStars?.Invoke(m_starsUnlocked);
+    }
+    
     private void PlayTweenAnimation()
     {
         m_visualToBump.localScale = Vector3.one;
