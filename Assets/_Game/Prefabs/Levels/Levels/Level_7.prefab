@@ -291,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 1754471498960397524}
     - target: {fileID: 7959672914106875011, guid: f424bb4d1fb09462db2cf4b69f72a5ae, type: 3}
       propertyPath: m_maxTimeSpawnDelay
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7959672914106875011, guid: f424bb4d1fb09462db2cf4b69f72a5ae, type: 3}
       propertyPath: m_minTimeSpawnDelay
@@ -328,7 +328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 594029068501613219, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_Name
-      value: Level_G
+      value: Level_7
       objectReference: {fileID: 0}
     - target: {fileID: 800516269820235121, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_levelSectionList.Array.size
@@ -381,6 +381,18 @@ PrefabInstance:
     - target: {fileID: 6304677588202403264, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_amountToCollect
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304677588202403264, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[0]
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304677588202403264, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[1]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304677588202403264, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[2]
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_initialAmountToSpawnList.Array.size
