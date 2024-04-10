@@ -51,6 +51,8 @@ public class UI_Victory : MonoBehaviour
 
     private IEnumerator StarsAnimationCoroutine()
     {
+        yield return new WaitForSecondsRealtime(1f);
+        
         for (int i = 0; i < m_unlockedStars; i++)
         {
             if (i >= m_starList.Count)
