@@ -21,6 +21,9 @@ public class Controller_ValueBonus : MonoBehaviour
 
     private void Initialize()
     {
+        if(m_valueBonusList == null || m_valueBonusList.Count == 0)
+            return;
+        
         for (int i = 0; i < m_valueBonusList.Count; i++)
         {
             if (m_valueBonusList[i] != null)
