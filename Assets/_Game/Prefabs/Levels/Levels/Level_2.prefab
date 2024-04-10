@@ -274,7 +274,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146802655764340510, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_valueBonusList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 146802655764340510, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_valueBonusList.Array.data[0].spawnDelay
