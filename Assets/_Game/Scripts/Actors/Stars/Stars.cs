@@ -18,14 +18,26 @@ public class Stars : MonoBehaviour
     private void OnEnable()
     {
         PiggyBank.OnBroadcastStars += OnBroadcastStars;
+        Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
     }
 
     private void OnDisable()
     {
         PiggyBank.OnBroadcastStars -= OnBroadcastStars;
+        Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
 
     private void Start()
+    {
+        Reset();
+    }
+
+    private void OnBroadcastGameState(GameState state)
+    {
+        Reset();
+    }
+
+    private void Reset()
     {
         m_currentStarsDisplayed = 0;
 
