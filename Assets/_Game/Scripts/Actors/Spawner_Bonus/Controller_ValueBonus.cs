@@ -23,8 +23,12 @@ public class Controller_ValueBonus : MonoBehaviour
     {
         for (int i = 0; i < m_valueBonusList.Count; i++)
         {
-            m_valueBonusList[i].valueBonus.gameObject.SetActive(false);
-            StartCoroutine(DelayedActivationCoroutine(m_valueBonusList[i].valueBonus.gameObject, m_valueBonusList[i].spawnDelay));
+            if (m_valueBonusList[i] != null)
+            {
+                m_valueBonusList[i].valueBonus.gameObject.SetActive(false);
+                StartCoroutine(DelayedActivationCoroutine(m_valueBonusList[i].valueBonus.gameObject,
+                    m_valueBonusList[i].spawnDelay));
+            }
         }
     }
 
@@ -34,5 +38,4 @@ public class Controller_ValueBonus : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay);
         valueBonus.SetActive(true);
     }
-    
 }
