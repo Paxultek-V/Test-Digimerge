@@ -60,7 +60,7 @@ MonoBehaviour:
   m_spawnerStats: {fileID: 5063255935173985920}
   m_valuesParent: {fileID: 0}
   m_spawnPosition: {fileID: 5364579251687678909}
-  m_initialAmountToSpawnList: []
+  m_initialAmountToSpawn: 50
 --- !u!114 &3415380459319090035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
+  m_desiredPosition: {x: 0, y: 0, z: 0}
+  m_startPosition: {x: 0, y: 0, z: 0}
+  m_startCursorPosition: {x: 0, y: 0, z: 0}
+  m_currentCursorPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &7259854381298182775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,8 +415,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: $99999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: dad51ccfdf7f541df9f457372ab1cd71, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f891b8412c79ed6458f0363ba8ea7473, type: 2}
+  m_sharedMaterial: {fileID: -5481826343638674389, guid: f891b8412c79ed6458f0363ba8ea7473, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

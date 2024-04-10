@@ -13,13 +13,13 @@ public class UI_Victory : MonoBehaviour
 
     private void OnEnable()
     {
-        PiggyBank.OnBroadcastStars += OnBroadcastStars;
+        PiggyBank.OnBroadcastStarsInfo += OnBroadcastStars;
         Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
     }
 
     private void OnDisable()
     {
-        PiggyBank.OnBroadcastStars -= OnBroadcastStars;
+        PiggyBank.OnBroadcastStarsInfo -= OnBroadcastStars;
         Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
 

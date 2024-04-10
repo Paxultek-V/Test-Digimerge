@@ -8,7 +8,8 @@ public class PiggyBank : MonoBehaviour
 {
     public static Action<float> OnPiggyBankFinishedCollectingMoney;
     public static Action<int> OnGrantGemReward;
-    public static Action<int> OnBroadcastStars;
+    public static Action<int> OnBroadcastStarsInfo;
+    public static Action<float> OnBroadcastProgressionTowardsNextStar;
     public static Action OnTargetAmountNotReached;
     public static Action OnTargetAmountReached;
 
@@ -87,11 +88,16 @@ public class PiggyBank : MonoBehaviour
         PlayTweenAnimation();
 
         CheckTargetAmountReachedCondition();
+
+        if (m_starsUnlocked >= 3)
+            return;
+        
+        OnBroadcastProgressionTowardsNextStar?.Invoke(CalculateProgressionTowardsNextStar());
     }
 
     private void CheckTargetAmountReachedCondition()
     {
-        if(m_starsUnlocked >= m_amountThresholdList.Count)
+        if (m_starsUnlocked >= m_amountThresholdList.Count)
             return;
 
 
@@ -115,15 +121,31 @@ public class PiggyBank : MonoBehaviour
 
         return 0;
     }
-    
+
     private void UnlockStar()
     {
         m_starsUnlocked++;
         m_starsUnlocked = Mathf.Clamp(m_starsUnlocked, 0, 3);
 
-        OnBroadcastStars?.Invoke(m_starsUnlocked);
+        OnBroadcastStarsInfo?.Invoke(m_starsUnlocked);
     }
-    
+
+    private float CalculateProgressionTowardsNextStar()
+    {
+        int previousIndex = m_starsUnlocked - 1;
+        int nextIndex = m_starsUnlocked;
+
+        float previous = 0;
+        if (previousIndex >= 0)
+            previous = m_amountThresholdList[previousIndex];
+        
+        float next = m_amountThresholdList[nextIndex];
+        
+        float progression = (m_collectedAmount - previous) / (next - previous);
+        
+        return progression;
+    }
+
     private void PlayTweenAnimation()
     {
         m_visualToBump.localScale = Vector3.one;

@@ -14,6 +14,7 @@ public class ValueActor_Value : MonoBehaviour
     public static Action<ValueBonus, float> OnHitValueBonus;
     public static Action<Vector3, float> OnHitSplitter;
     public Action<int> OnSendValueLength;
+    public Action<float> OnSendValue;
 
     [Header("References")]
     [SerializeField] private Rigidbody m_body = null;
@@ -233,6 +234,7 @@ public class ValueActor_Value : MonoBehaviour
         if (newValue < 1)
             newValue = 1;
         m_value = newValue;
+        OnSendValue?.Invoke(m_value);
         UpdateText();
     }
 
