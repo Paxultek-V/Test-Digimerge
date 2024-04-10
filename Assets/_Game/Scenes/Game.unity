@@ -1422,6 +1422,7 @@ MonoBehaviour:
   - {fileID: 8152034812188629658, guid: bcd6f2ec5c2674016aa86c61e692c85d, type: 3}
   - {fileID: 5688157603812104546, guid: 447720f5add9b4884b9368a7559021f1, type: 3}
   - {fileID: 1401968957722061277, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
+  - {fileID: 6501564588863464068, guid: 41d4e351c21014bbfb79a6fd3c61069a, type: 3}
   m_levelParent: {fileID: 386099674}
   m_currentLevelIndexSaveTag: CurrentLevelIndex
 --- !u!1 &561743444
