@@ -349,10 +349,10 @@ MonoBehaviour:
     key6: {r: 1, g: 0.3160377, b: 0.7948112, a: 0}
     key7: {r: 0.5368909, g: 0.3254717, b: 1, a: 0}
     ctime0: 0
-    ctime1: 655
-    ctime2: 3277
-    ctime3: 6554
-    ctime4: 13107
+    ctime1: 197
+    ctime2: 655
+    ctime3: 3277
+    ctime4: 6554
     ctime5: 22937
     ctime6: 39321
     ctime7: 65535
