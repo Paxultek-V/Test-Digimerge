@@ -8,6 +8,8 @@ public class Stars : MonoBehaviour
 {
     [SerializeField] private List<Image> m_starList = null;
 
+    [SerializeField] private List<Transform> m_starShadowList = null;
+    
     private Image m_currentImage;
     private Tweener m_tweener;
     private int m_unlockedStarsCount;
@@ -35,6 +37,15 @@ public class Stars : MonoBehaviour
     private void OnBroadcastGameState(GameState state)
     {
         Reset();
+
+        if (state == GameState.Victory || state == GameState.Gameover)
+        {
+            for (int i = 0; i < m_starShadowList.Count; i++)
+            {
+                m_starShadowList[i].gameObject.SetActive(false);
+            }
+        }
+            
     }
 
     private void Reset()

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UI_Victory : MonoBehaviour
 {
     [SerializeField] private List<Transform> m_starList = null;
-
+    
     [SerializeField] private TMP_Text m_victoryText = null;
 
     [SerializeField] private Image m_victoryImage = null;

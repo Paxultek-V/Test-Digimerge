@@ -291,7 +291,7 @@ MonoBehaviour:
   m_valueVisual: {fileID: 2556486274708304055}
   m_minRotationForce: -150
   m_maxRotationForce: 150
-  m_collisionCooldownDuration: 0.2
+  m_collisionCooldownDuration: 0.1
 --- !u!114 &8950637456575860147
 MonoBehaviour:
   m_ObjectHideFlags: 0

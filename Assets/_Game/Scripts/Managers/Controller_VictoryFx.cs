@@ -19,16 +19,17 @@ public class Controller_VictoryFx : MonoBehaviour
 
     private void OnBroadcastGameState(GameState state)
     {
-        if (state == GameState.Victory)
-            PlayVictoryFx();
+        ToggleVictoryFx(state == GameState.Victory);
     }
 
-    private void PlayVictoryFx()
+    private void ToggleVictoryFx(bool state)
     {
         for (int i = 0; i < m_victoryFxList.Count; i++)
         {
-            m_victoryFxList[i].Play();
+            if (state)
+                m_victoryFxList[i].Play();
+            else
+                m_victoryFxList[i].Stop();
         }
     }
-    
 }
