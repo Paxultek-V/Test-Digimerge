@@ -1366,6 +1366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_levelPrefabList:
+  - {fileID: 2469256648716627911, guid: 12ba556813ee84504aa7eb3fba0d7554, type: 3}
+  - {fileID: 7376142579641798733, guid: 42b6da224ab85459da7f7aa1247f378d, type: 3}
+  - {fileID: 52210556640096448, guid: 00fb0c7f9ebdd4909ab6825dabd5ba2e, type: 3}
   - {fileID: 4500238003761338772, guid: fef65cbc7d597465cb67e5fc0301a2ed, type: 3}
   - {fileID: 7088635727860328074, guid: bd03468a1728543f6a75442e2a8b32c9, type: 3}
   - {fileID: 3565210845738557390, guid: 82dacd5b7fab647f9872faf978ff6752, type: 3}

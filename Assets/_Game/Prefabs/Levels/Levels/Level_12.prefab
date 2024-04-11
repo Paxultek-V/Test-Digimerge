@@ -150,11 +150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687241161765079324, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_text
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6701834643935656188, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_LocalPosition.x
@@ -216,11 +216,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 469867836556941452, guid: 77dfd60639750446c82cf8e5ee0da5af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 469867836556941452, guid: 77dfd60639750446c82cf8e5ee0da5af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 469867836556941452, guid: 77dfd60639750446c82cf8e5ee0da5af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -286,19 +286,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687241161765079324, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_text
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6701834643935656188, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
-      propertyPath: m_LocalPosition.x
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_LocalPosition.z
@@ -353,6 +353,14 @@ PrefabInstance:
     - target: {fileID: 594029068501613219, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_Name
       value: Level_12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946794766042786132, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946794766042786132, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -740,11 +748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687241161765079324, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_text
-      value: -10
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 6701834643935656188, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7370686286034290653, guid: 352474fdb5df14fd3b598ebd336c5271, type: 3}
       propertyPath: m_LocalPosition.x
