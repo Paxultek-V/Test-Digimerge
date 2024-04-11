@@ -7,10 +7,24 @@ public class Module_SpeedZone : MonoBehaviour
 {
     [SerializeField] private float m_force = 5f;
 
+    [SerializeField] private float m_iOSForceMultiplier = 10f;
+
     private List<Rigidbody> m_bodyInZoneList = new List<Rigidbody>();
 
     private Rigidbody m_bodyBuffer;
 
+
+    private void Start()
+    {
+        Fix_iOS();
+    }
+
+    private void Fix_iOS()
+    {
+#if UNITY_IPHONE
+        m_force *= m_iOSForceMultiplier;
+#endif
+    }
 
     private void Update()
     {
@@ -19,9 +33,9 @@ public class Module_SpeedZone : MonoBehaviour
 
     private void ApplyForceOnBodies()
     {
-        if(m_bodyInZoneList == null || m_bodyInZoneList.Count == 0)
+        if (m_bodyInZoneList == null || m_bodyInZoneList.Count == 0)
             return;
-        
+
         for (int i = 0; i < m_bodyInZoneList.Count; i++)
         {
             if (m_bodyInZoneList[i] != null)
