@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner_Stats : MonoBehaviour
 {
     public static System.Action<BonusType, float> OnSendBonusRemainingDuration;
+    public static System.Action OnStopBonus;
 
     [SerializeField] private  Spawner_Value_SO m_spawnerData = null;
     
@@ -29,13 +30,21 @@ public class Spawner_Stats : MonoBehaviour
     private void OnEnable()
     {
         ValueBonus.OnGrantBonus += OnGrantBonus;
+        Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
     }
 
     private void OnDisable()
     {
         ValueBonus.OnGrantBonus -= OnGrantBonus;
+        Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
 
+    private void OnBroadcastGameState(GameState state)
+    {
+        StopAllCoroutines();
+        OnStopBonus?.Invoke();
+    }
+    
     private void OnGrantBonus(BonusType type, float value, float duration)
     {
         StartCoroutine(BonusCoroutine(type, value, duration));
