@@ -72,7 +72,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 160154456633846621, guid: 9f449c891037346fa8201870d75317fc, type: 3}
       propertyPath: m_amountThresholdList.Array.data[0]
-      value: 1000
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 160154456633846621, guid: 9f449c891037346fa8201870d75317fc, type: 3}
       propertyPath: m_amountThresholdList.Array.data[1]
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6735176362102613054, guid: 9f449c891037346fa8201870d75317fc, type: 3}
       propertyPath: m_Name
-      value: Level_6 Variant
+      value: 30-1000-2000
       objectReference: {fileID: 0}
     - target: {fileID: 6995754065900695255, guid: 9f449c891037346fa8201870d75317fc, type: 3}
       propertyPath: m_LocalPosition.x

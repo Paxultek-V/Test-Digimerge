@@ -290,7 +290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422331690112036149, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_Name
-      value: 750-5000 Variant
+      value: 38-5000-15000
       objectReference: {fileID: 0}
     - target: {fileID: 749722525598479960, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_LocalScale.y
@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6529288145503281750, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_amountThresholdList.Array.data[0]
-      value: 5000
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6529288145503281750, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_amountThresholdList.Array.data[1]
