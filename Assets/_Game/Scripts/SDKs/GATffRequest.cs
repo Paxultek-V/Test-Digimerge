@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using GameAnalyticsSDK;
 using UnityEngine;
@@ -34,4 +34,4 @@ public class GATffRequest : MonoBehaviour,IGameAnalyticsATTListener
     {
         GameAnalytics.Initialize();
     }
-}
+}*/
