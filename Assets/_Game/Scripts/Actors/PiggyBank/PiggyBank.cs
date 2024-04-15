@@ -10,6 +10,7 @@ public class PiggyBank : MonoBehaviour
     public static Action<int> OnGrantGemReward;
     public static Action<int> OnBroadcastStarsInfo;
     public static Action<float> OnBroadcastProgressionTowardsNextStar;
+    public static Action<float> OnSendTotalMoneyCollected;
     public static Action OnTargetAmountNotReached;
     public static Action OnTargetAmountReached;
 
@@ -59,6 +60,7 @@ public class PiggyBank : MonoBehaviour
     {
         if (m_starsUnlocked > 0)
         {
+            OnSendTotalMoneyCollected?.Invoke(m_collectedAmount);
             OnTargetAmountReached?.Invoke();
             DestroyPiggyBank();
         }

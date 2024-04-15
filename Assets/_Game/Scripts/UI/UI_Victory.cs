@@ -1,19 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class UI_Victory : MonoBehaviour
 {
     [SerializeField] private List<Transform> m_starList = null;
-    
+
     [SerializeField] private TMP_Text m_victoryText = null;
 
-    [SerializeField] private TMP_Text m_moneyEarned = null;
+    [SerializeField] private TMP_Text m_moneyEarnedText = null;
 
     [SerializeField] private GameObject m_tapToContinueButton = null;
 
@@ -24,12 +22,14 @@ public class UI_Victory : MonoBehaviour
     private void OnEnable()
     {
         PiggyBank.OnBroadcastStarsInfo += OnBroadcastStars;
+        PiggyBank.OnSendTotalMoneyCollected += OnSendTotalMoneyCollected;
         Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
     }
 
     private void OnDisable()
     {
         PiggyBank.OnBroadcastStarsInfo -= OnBroadcastStars;
+        PiggyBank.OnSendTotalMoneyCollected -= OnSendTotalMoneyCollected;
         Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
 
@@ -42,6 +42,11 @@ public class UI_Victory : MonoBehaviour
         {
             m_starList[i].gameObject.SetActive(false);
         }
+    }
+
+    private void OnSendTotalMoneyCollected(float amountCollected)
+    {
+        m_moneyEarnedText.text = "You earned\n$" + amountCollected.FormatNumber();
     }
 
     private void OnBroadcastStars(int unlockedStars)
@@ -65,11 +70,11 @@ public class UI_Victory : MonoBehaviour
         m_tapToContinueButton.SetActive(false);
 
         m_victoryText.transform.localScale = Vector3.one * 0.4f;
-        m_moneyEarned.transform.localScale = Vector3.one * 0.4f;
-        
+        m_moneyEarnedText.transform.localScale = Vector3.one * 0.4f;
+
         m_victoryText.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
-            m_moneyEarned.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
-                m_moneyEarned.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1).OnComplete(() => 
+            m_moneyEarnedText.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
+                m_moneyEarnedText.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1).OnComplete(() =>
                     StartCoroutine(StarsAnimationCoroutine()))));
     }
 
@@ -89,7 +94,7 @@ public class UI_Victory : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(0.5f);
         }
-        
+
         m_tapToContinueButton.SetActive(true);
     }
 }
