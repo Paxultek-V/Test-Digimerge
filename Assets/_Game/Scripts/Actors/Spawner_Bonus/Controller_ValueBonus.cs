@@ -14,16 +14,27 @@ public class Controller_ValueBonus : MonoBehaviour
 {
     [SerializeField] private List<ValueBonusInfo> m_valueBonusList = null;
 
-    private void Start()
+    private void OnEnable()
     {
-        Initialize();
+        Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
+    }
+
+    private void OnDisable()
+    {
+        Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
+    }
+
+    private void OnBroadcastGameState(GameState state)
+    {
+        if (state == GameState.InGame)
+            Initialize();
     }
 
     private void Initialize()
     {
-        if(m_valueBonusList == null || m_valueBonusList.Count == 0)
+        if (m_valueBonusList == null || m_valueBonusList.Count == 0)
             return;
-        
+
         for (int i = 0; i < m_valueBonusList.Count; i++)
         {
             if (m_valueBonusList[i] != null)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UI_Victory : MonoBehaviour
@@ -12,7 +13,7 @@ public class UI_Victory : MonoBehaviour
     
     [SerializeField] private TMP_Text m_victoryText = null;
 
-    [SerializeField] private Image m_victoryImage = null;
+    [SerializeField] private TMP_Text m_moneyEarned = null;
 
     [SerializeField] private GameObject m_tapToContinueButton = null;
 
@@ -64,11 +65,11 @@ public class UI_Victory : MonoBehaviour
         m_tapToContinueButton.SetActive(false);
 
         m_victoryText.transform.localScale = Vector3.one * 0.4f;
-        m_victoryImage.transform.localScale = Vector3.one * 0.4f;
+        m_moneyEarned.transform.localScale = Vector3.one * 0.4f;
         
         m_victoryText.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
-            m_victoryImage.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
-                m_victoryImage.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1).OnComplete(() => 
+            m_moneyEarned.transform.DOScale(Vector3.one, 0.3f).OnComplete(() =>
+                m_moneyEarned.transform.DOPunchScale(Vector3.one / 2f, 0.33f, 1).OnComplete(() => 
                     StartCoroutine(StarsAnimationCoroutine()))));
     }
 
