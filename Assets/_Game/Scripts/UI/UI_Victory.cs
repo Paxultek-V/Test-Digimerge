@@ -12,7 +12,10 @@ public class UI_Victory : MonoBehaviour
     [SerializeField] private TMP_Text m_victoryText = null;
 
     [SerializeField] private TMP_Text m_moneyEarnedText = null;
+    
+    /* // For creatives
     [SerializeField] private TMP_Text m_moneyEarnedText_DEBUG = null;
+*/
 
     [SerializeField] private GameObject m_tapToContinueButton = null;
 
@@ -48,7 +51,7 @@ public class UI_Victory : MonoBehaviour
     private void OnSendTotalMoneyCollected(float amountCollected)
     {
         m_moneyEarnedText.text = "You earned\n$" + amountCollected.FormatNumber();
-        m_moneyEarnedText_DEBUG.text = "You earned\n$" + amountCollected.FormatNumber();
+        //m_moneyEarnedText_DEBUG.text = "You earned\n$" + amountCollected.FormatNumber(); // For creatives
     }
 
     private void OnBroadcastStars(int unlockedStars)
