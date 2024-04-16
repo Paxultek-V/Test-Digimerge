@@ -24,6 +24,13 @@ public class Controller_ValueBonus : MonoBehaviour
         Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < m_valueBonusList.Count; i++)
+            if (m_valueBonusList[i] != null)
+                m_valueBonusList[i].valueBonus.gameObject.SetActive(false);
+    }
+
     private void OnBroadcastGameState(GameState state)
     {
         if (state == GameState.InGame)
@@ -39,7 +46,6 @@ public class Controller_ValueBonus : MonoBehaviour
         {
             if (m_valueBonusList[i] != null)
             {
-                m_valueBonusList[i].valueBonus.gameObject.SetActive(false);
                 StartCoroutine(DelayedActivationCoroutine(m_valueBonusList[i].valueBonus.gameObject,
                     m_valueBonusList[i].spawnDelay));
             }

@@ -24,6 +24,9 @@ public class Module_SpeedZone : MonoBehaviour
 #if UNITY_IPHONE
         m_force *= m_iOSForceMultiplier;
 #endif
+#if UNITY_ANDROID
+        m_force *= m_iOSForceMultiplier;
+#endif
     }
 
     private void Update()

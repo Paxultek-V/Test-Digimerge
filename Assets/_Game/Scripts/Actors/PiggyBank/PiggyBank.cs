@@ -66,6 +66,7 @@ public class PiggyBank : MonoBehaviour
         }
         else
         {
+            OnSendTotalMoneyCollected?.Invoke(m_collectedAmount);
             OnTargetAmountNotReached?.Invoke();
         }
     }

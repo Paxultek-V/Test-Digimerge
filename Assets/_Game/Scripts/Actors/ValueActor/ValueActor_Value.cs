@@ -36,7 +36,7 @@ public class ValueActor_Value : MonoBehaviour
     private PiggyBank m_piggyBankBuffer;
     private float m_value;
     private float m_collisionCooldownTimer;
-    private bool m_isInCooldownCollision;
+    private bool m_isInCooldownCollision = true;
 
     
     private void OnEnable()

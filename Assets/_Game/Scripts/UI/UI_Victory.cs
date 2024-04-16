@@ -12,6 +12,7 @@ public class UI_Victory : MonoBehaviour
     [SerializeField] private TMP_Text m_victoryText = null;
 
     [SerializeField] private TMP_Text m_moneyEarnedText = null;
+    [SerializeField] private TMP_Text m_moneyEarnedText_DEBUG = null;
 
     [SerializeField] private GameObject m_tapToContinueButton = null;
 
@@ -47,6 +48,7 @@ public class UI_Victory : MonoBehaviour
     private void OnSendTotalMoneyCollected(float amountCollected)
     {
         m_moneyEarnedText.text = "You earned\n$" + amountCollected.FormatNumber();
+        m_moneyEarnedText_DEBUG.text = "You earned\n$" + amountCollected.FormatNumber();
     }
 
     private void OnBroadcastStars(int unlockedStars)
@@ -67,7 +69,8 @@ public class UI_Victory : MonoBehaviour
 
     private void PlayVictoryUISequence()
     {
-        m_tapToContinueButton.SetActive(false);
+        if (m_tapToContinueButton != null)
+            m_tapToContinueButton.SetActive(false);
 
         m_victoryText.transform.localScale = Vector3.one * 0.4f;
         m_moneyEarnedText.transform.localScale = Vector3.one * 0.4f;

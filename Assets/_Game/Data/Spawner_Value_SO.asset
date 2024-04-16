@@ -15,7 +15,7 @@ MonoBehaviour:
   valuePrefab: {fileID: 7879417967242118175, guid: b3af26aa8c95f453bbbf5199b3ae9808, type: 3}
   maxEjectionStrength: 500
   splitEjectionStrength: 1
-  baseSpawnSpeed: 3
+  baseSpawnSpeed: 2.5
   baseValueToSpawn: 1
   maxXPosition: 7
   smoothTime: 0.1
