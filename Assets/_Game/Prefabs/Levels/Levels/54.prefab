@@ -92,7 +92,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 643457716845270659, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 643457716845270659, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_bumpEffect.ValueBumpEffect
@@ -100,15 +100,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1505288021935908707, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_text
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1975855758555294702, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9d2198263cb3445ac9a372428c81f248, type: 2}
+    - target: {fileID: 2042119245852003739, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042119245852003739, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[1]
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2042119245852003739, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
+      propertyPath: m_amountThresholdList.Array.data[2]
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2465983120806250481, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_text
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 3292293738608380796, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -128,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482542382665709073, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_bumpEffect.BumpValue
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4482542382665709073, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_bumpEffect.ValueBumpEffect
