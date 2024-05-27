@@ -328,6 +328,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7000600963945432646}
     m_Modifications:
+    - target: {fileID: 1136927757600075179, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
+      propertyPath: m_endPosition.x
+      value: -6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1136927757600075179, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
+      propertyPath: m_endPosition.y
+      value: 1.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1136927757600075179, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
+      propertyPath: m_startPosition.x
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1136927757600075179, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
+      propertyPath: m_startPosition.y
+      value: 1.98
+      objectReference: {fileID: 0}
     - target: {fileID: 2267034969883836004, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
       propertyPath: m_Name
       value: AddBumper Hmoving
@@ -380,42 +396,16 @@ PrefabInstance:
       propertyPath: m_bumpEffect.BumpValue
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1136927757600075179, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2267034969883836004, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9007822803761194083}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
 --- !u!4 &3693090353061176392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5241327762258668938, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
   m_PrefabInstance: {fileID: 8934176081279191490}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7244798134228907942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2267034969883836004, guid: fb3a8347b5c4d44ce9322811a68864a3, type: 3}
-  m_PrefabInstance: {fileID: 8934176081279191490}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9007822803761194083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244798134228907942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff12dd601a1c4c6ea96f73bfb4eaf1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_controlledTransform: {fileID: 0}
-  m_startPosition: {x: 6.6, y: 1.98, z: 0}
-  m_endPosition: {x: -6.6, y: 1.98, z: 0}
-  m_progressionSpeed: 1
-  m_gizmosSize: 0.5
 --- !u!1001 &9214059557464977427
 PrefabInstance:
   m_ObjectHideFlags: 0

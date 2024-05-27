@@ -355,6 +355,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7496003561718231963, guid: 1a05fbcd7d1b5442c920b14bc7cc0121, type: 3}
+      propertyPath: m_valueBonusList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7496003561718231963, guid: 1a05fbcd7d1b5442c920b14bc7cc0121, type: 3}
       propertyPath: m_valueBonusList.Array.data[0].valueBonus
       value: 
       objectReference: {fileID: 0}
