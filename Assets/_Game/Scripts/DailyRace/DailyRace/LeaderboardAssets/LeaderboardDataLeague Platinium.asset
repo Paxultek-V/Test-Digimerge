@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efb65ef16a54f7c9ec5d3f984406b79, type: 3}
+  m_Name: LeaderboardDataLeague Platinium
+  m_EditorClassIdentifier: 
+  <MaxPointValue>k__BackingField: 1600
+  <LeagueType>k__BackingField: 4
+  <PlayerDataHolder>k__BackingField:
+    <LeaderboardDataPlayers>k__BackingField:
+    - <Name>k__BackingField: Taylor Miller
+      <Points>k__BackingField: 1595
+    - <Name>k__BackingField: Jordan Davis
+      <Points>k__BackingField: 1579
+    - <Name>k__BackingField: Jordan Williams
+      <Points>k__BackingField: 1578
+    - <Name>k__BackingField: Casey Taylor
+      <Points>k__BackingField: 1574
+    - <Name>k__BackingField: Jordan Davis
+      <Points>k__BackingField: 1566
+    - <Name>k__BackingField: Skyler Miller
+      <Points>k__BackingField: 1555
+    - <Name>k__BackingField: Morgan Wilson
+      <Points>k__BackingField: 1544
+    - <Name>k__BackingField: Casey Taylor
+      <Points>k__BackingField: 1541
+    - <Name>k__BackingField: Dakota Wilson
+      <Points>k__BackingField: 1533
+    - <Name>k__BackingField: Alex Smith
+      <Points>k__BackingField: 1529
+    - <Name>k__BackingField: Skyler Wilson
+      <Points>k__BackingField: 1520
+    - <Name>k__BackingField: Alex Smith
+      <Points>k__BackingField: 1519
+    - <Name>k__BackingField: Dakota Taylor
+      <Points>k__BackingField: 1514
+    - <Name>k__BackingField: Dakota Brown
+      <Points>k__BackingField: 1494
+    - <Name>k__BackingField: Avery Brown
+      <Points>k__BackingField: 1491
+    - <Name>k__BackingField: Morgan Wilson
+      <Points>k__BackingField: 1463
+    - <Name>k__BackingField: Riley Miller
+      <Points>k__BackingField: 1462
+    - <Name>k__BackingField: Skyler Wilson
+      <Points>k__BackingField: 1460
+    - <Name>k__BackingField: Alex Moore
+      <Points>k__BackingField: 1450
+    - <Name>k__BackingField: Alex Jones
+      <Points>k__BackingField: 1438
+    - <Name>k__BackingField: Dakota Jones
+      <Points>k__BackingField: 1437
+    - <Name>k__BackingField: Jamie Taylor
+      <Points>k__BackingField: 1429
+    - <Name>k__BackingField: Alex Wilson
+      <Points>k__BackingField: 1426
+    - <Name>k__BackingField: Jordan Moore
+      <Points>k__BackingField: 1423
+    - <Name>k__BackingField: Avery Williams
+      <Points>k__BackingField: 1422
+    - <Name>k__BackingField: Dakota Brown
+      <Points>k__BackingField: 1419
+    - <Name>k__BackingField: Taylor Miller
+      <Points>k__BackingField: 1417
+    - <Name>k__BackingField: Taylor Taylor
+      <Points>k__BackingField: 1383
+    - <Name>k__BackingField: Skyler Taylor
+      <Points>k__BackingField: 1377
+    - <Name>k__BackingField: Avery Davis
+      <Points>k__BackingField: 1375
+    - <Name>k__BackingField: Avery Brown
+      <Points>k__BackingField: 1349
+    - <Name>k__BackingField: Avery Jones
+      <Points>k__BackingField: 1338
+    - <Name>k__BackingField: Dakota Moore
+      <Points>k__BackingField: 1320
+    - <Name>k__BackingField: Skyler Williams
+      <Points>k__BackingField: 1320
+    - <Name>k__BackingField: Jamie Davis
+      <Points>k__BackingField: 1316
+    - <Name>k__BackingField: Taylor Moore
+      <Points>k__BackingField: 1297
+    - <Name>k__BackingField: Skyler Jones
+      <Points>k__BackingField: 1277
+    - <Name>k__BackingField: Dakota Miller
+      <Points>k__BackingField: 1257
+    - <Name>k__BackingField: Avery Miller
+      <Points>k__BackingField: 1255
+    - <Name>k__BackingField: Dakota Taylor
+      <Points>k__BackingField: 1248
+    - <Name>k__BackingField: Dakota Johnson
+      <Points>k__BackingField: 1245
+    - <Name>k__BackingField: Jamie Miller
+      <Points>k__BackingField: 1241
+    - <Name>k__BackingField: Jamie Jones
+      <Points>k__BackingField: 1239
+    - <Name>k__BackingField: Morgan Brown
+      <Points>k__BackingField: 1216
+    - <Name>k__BackingField: Jordan Brown
+      <Points>k__BackingField: 1208
+    - <Name>k__BackingField: Casey Taylor
+      <Points>k__BackingField: 1197
+    - <Name>k__BackingField: Jamie Davis
+      <Points>k__BackingField: 1194
+    - <Name>k__BackingField: Avery Miller
+      <Points>k__BackingField: 1193
+    - <Name>k__BackingField: Morgan Jones
+      <Points>k__BackingField: 1188
+    - <Name>k__BackingField: Dakota Taylor
+      <Points>k__BackingField: 1185
+    - <Name>k__BackingField: Dakota Wilson
+      <Points>k__BackingField: 1181
+    - <Name>k__BackingField: Taylor Smith
+      <Points>k__BackingField: 1181
+    - <Name>k__BackingField: Riley Williams
+      <Points>k__BackingField: 1178
+    - <Name>k__BackingField: Avery Davis
+      <Points>k__BackingField: 1175
+    - <Name>k__BackingField: Jordan Miller
+      <Points>k__BackingField: 1171
+    - <Name>k__BackingField: Jordan Williams
+      <Points>k__BackingField: 1166
+    - <Name>k__BackingField: Morgan Smith
+      <Points>k__BackingField: 1162
+    - <Name>k__BackingField: Jamie Wilson
+      <Points>k__BackingField: 1144
+    - <Name>k__BackingField: Alex Johnson
+      <Points>k__BackingField: 1142
+    - <Name>k__BackingField: Dakota Miller
+      <Points>k__BackingField: 1129
+    - <Name>k__BackingField: Jamie Williams
+      <Points>k__BackingField: 1118
+    - <Name>k__BackingField: Jordan Williams
+      <Points>k__BackingField: 1117
+    - <Name>k__BackingField: Jordan Davis
+      <Points>k__BackingField: 1097
+    - <Name>k__BackingField: Riley Brown
+      <Points>k__BackingField: 1090
+    - <Name>k__BackingField: Dakota Davis
+      <Points>k__BackingField: 1073
+    - <Name>k__BackingField: Morgan Johnson
+      <Points>k__BackingField: 1045
+    - <Name>k__BackingField: Jamie Taylor
+      <Points>k__BackingField: 1043
+    - <Name>k__BackingField: Riley Johnson
+      <Points>k__BackingField: 1042
+    - <Name>k__BackingField: Avery Davis
+      <Points>k__BackingField: 1041
+    - <Name>k__BackingField: Skyler Miller
+      <Points>k__BackingField: 1037
+    - <Name>k__BackingField: Taylor Miller
+      <Points>k__BackingField: 1036
+    - <Name>k__BackingField: Skyler Taylor
+      <Points>k__BackingField: 1026
+    - <Name>k__BackingField: Jamie Jones
+      <Points>k__BackingField: 1023
+    - <Name>k__BackingField: Casey Brown
+      <Points>k__BackingField: 1009
+    - <Name>k__BackingField: Alex Moore
+      <Points>k__BackingField: 992
+    - <Name>k__BackingField: Dakota Miller
+      <Points>k__BackingField: 991
+    - <Name>k__BackingField: Morgan Johnson
+      <Points>k__BackingField: 988
+    - <Name>k__BackingField: Dakota Jones
+      <Points>k__BackingField: 984
+    - <Name>k__BackingField: Avery Moore
+      <Points>k__BackingField: 982
+    - <Name>k__BackingField: Dakota Jones
+      <Points>k__BackingField: 972
+    - <Name>k__BackingField: Jamie Taylor
+      <Points>k__BackingField: 964
+    - <Name>k__BackingField: Avery Williams
+      <Points>k__BackingField: 963
+    - <Name>k__BackingField: Riley Wilson
+      <Points>k__BackingField: 960
+    - <Name>k__BackingField: Skyler Taylor
+      <Points>k__BackingField: 956
+    - <Name>k__BackingField: Riley Jones
+      <Points>k__BackingField: 938
+    - <Name>k__BackingField: Avery Williams
+      <Points>k__BackingField: 937
+    - <Name>k__BackingField: Jordan Smith
+      <Points>k__BackingField: 934
+    - <Name>k__BackingField: Dakota Wilson
+      <Points>k__BackingField: 908
+    - <Name>k__BackingField: Taylor Wilson
+      <Points>k__BackingField: 904
+    - <Name>k__BackingField: Morgan Johnson
+      <Points>k__BackingField: 891
+    - <Name>k__BackingField: Casey Smith
+      <Points>k__BackingField: 886
+    - <Name>k__BackingField: Alex Johnson
+      <Points>k__BackingField: 881
+    - <Name>k__BackingField: Casey Miller
+      <Points>k__BackingField: 875
+    - <Name>k__BackingField: Taylor Davis
+      <Points>k__BackingField: 863
+    - <Name>k__BackingField: Taylor Wilson
+      <Points>k__BackingField: 846
+    - <Name>k__BackingField: Alex Johnson
+      <Points>k__BackingField: 846
+    - <Name>k__BackingField: Jamie Johnson
+      <Points>k__BackingField: 833
+    - <Name>k__BackingField: Riley Taylor
+      <Points>k__BackingField: 815
+    - <Name>k__BackingField: Jamie Davis
+      <Points>k__BackingField: 814
