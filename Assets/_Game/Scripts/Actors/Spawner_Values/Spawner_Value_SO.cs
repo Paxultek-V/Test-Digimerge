@@ -16,4 +16,5 @@ public class Spawner_Value_SO : ScriptableObject
     public float maxXPosition = 7f;
     public float smoothTime = 0.3f;
     public float pixelPerMeter = 100f;
+    public float autoMovementSpeed = 50f;
 }
