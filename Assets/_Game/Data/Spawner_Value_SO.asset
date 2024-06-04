@@ -20,3 +20,4 @@ MonoBehaviour:
   maxXPosition: 7
   smoothTime: 0.1
   pixelPerMeter: 50
+  autoMovementSpeed: 1.4

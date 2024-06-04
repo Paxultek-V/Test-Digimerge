@@ -7,6 +7,7 @@ using Features.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DailyRaceButton : Button
 {
