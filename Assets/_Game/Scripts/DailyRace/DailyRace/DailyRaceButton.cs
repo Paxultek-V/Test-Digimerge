@@ -27,6 +27,8 @@ public class DailyRaceButton : Button
    
     
     private CanvasGroup canvasGroup;
+    Vector2 startPos;
+    private RectTransform rect;
     
     
     protected override void Awake()
@@ -35,6 +37,9 @@ public class DailyRaceButton : Button
         
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.SetVisibility(false);
+        rect = gameObject.GetComponent<RectTransform>();
+        startPos = rect.anchoredPosition;
+        Initialize();
     }
 
 
@@ -43,24 +48,62 @@ public class DailyRaceButton : Button
 #if UNITY_EDITOR
         if (!Application.isPlaying) return;
 #endif
+
+        Manager_GameState.OnBroadcastGameState += OnGameStateChanged;
+        
         canvasGroup.SetVisibility(true);
         CheckImage.enabled = false;
 
-        var rect = gameObject.GetComponent<RectTransform>();
-        var startPos = rect.anchoredPosition;
-        moveSequence = DOTween.Sequence();
-        moveSequence.AppendInterval(2f);
-        moveSequence.Append(rect.DOAnchorPos(startPos, 0.75f).From(startPos + Vector2.right * (rect.rect.width + 50)).SetEase(Ease.OutBack, 1f));
-        moveSequence.AppendInterval(3f);
-        moveSequence.AppendCallback(() => JumpSequence(rect));
-
         var shineRect = ShineImage.GetComponent<RectTransform>();
         shineSequence = DOTween.Sequence();
-        shineSequence.Append(shineRect.DOAnchorPosX(250f, 0.6f).From(new Vector2(-250f, rect.anchoredPosition.y)).SetEase(Ease.OutSine));
-        shineSequence.AppendInterval(0.5f);
-        shineSequence.Append(shineRect.DOAnchorPosX(250f, 0.6f).From(new Vector2(-250f, rect.anchoredPosition.y)).SetEase(Ease.OutSine));
-        shineSequence.AppendInterval(2f);
+        shineSequence.Append(shineRect.DOAnchorPosX(300f, 0.7f).From(new Vector2(-300f, rect.anchoredPosition.y)).SetEase(Ease.OutSine));
+        shineSequence.AppendInterval(0.6f);
+        shineSequence.Append(shineRect.DOAnchorPosX(300f, 0.7f).From(new Vector2(-300f, rect.anchoredPosition.y)).SetEase(Ease.OutSine));
+        shineSequence.AppendInterval(3f);
         shineSequence.SetLoops(-1);
+    }
+
+    public Sequence Move(bool moveIn)
+    {
+        moveSequence?.Kill();
+        moveSequence = DOTween.Sequence();
+        var outPos = startPos + Vector2.right * (rect.rect.width + 50);
+        
+        if (moveIn)
+        {
+            moveSequence.AppendInterval(2f);
+            moveSequence.Append(rect.DOAnchorPos(startPos, 0.75f).From(outPos).SetEase(Ease.OutBack, 1f));
+            moveSequence.AppendInterval(3f);
+            moveSequence.AppendCallback(() => JumpSequence(rect));
+        }
+        else
+        {
+            moveSequence.Append(rect.DOAnchorPos(outPos, 0.75f).From(startPos).SetEase(Ease.OutBack, 1f));
+            moveSequence.AppendInterval(3f);
+            moveSequence.AppendCallback(() => JumpSequence(rect));
+        }
+        
+        
+        return moveSequence;
+    }
+
+    private void OnGameStateChanged(GameState obj)
+    {
+        switch (obj)
+        {
+            case GameState.MainMenu :
+                Move(true);
+                break;
+            default:
+                Move(false);
+                break;
+        }
+    }
+
+    protected override void OnDestroy()
+    {
+        Manager_GameState.OnBroadcastGameState -= OnGameStateChanged;
+        base.OnDestroy();
     }
 
 
@@ -109,15 +152,11 @@ public class DailyRaceButton : Button
             DailyRaceEvents.JoinEvent += () => { jumpSequence?.Kill(true); };
         }
     }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    }
-
+    
     public override void OnSelect(BaseEventData eventData)
     {
         DailyRaceEvents.SendLeaderboardShowEvent(true);
+        Move(false);
         base.OnSelect(eventData);
     }
 }

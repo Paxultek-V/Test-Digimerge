@@ -8,7 +8,7 @@ namespace Features.Experimental.Scripts.Leaderboard
     public static class DailyRaceEvents
     {
         public static Action<PointsEarnedData> PointEarnedEvent;
-        public static Action<bool> ActivateEvent;
+        public static Action<bool> GrantCollected;
         public static Action<bool, bool> ShowEvent;
         public static Action<bool> LeaderboardSetInteractableEvent;
         public static Action JoinEvent;
@@ -24,7 +24,7 @@ namespace Features.Experimental.Scripts.Leaderboard
 
         public static void SendLeaderboardActivateEvent(bool isActive)
         {
-            ActivateEvent?.Invoke(isActive);
+            GrantCollected?.Invoke(isActive);
         }
 
         public static void SendLeaderboardJoinEvent()
@@ -40,6 +40,9 @@ namespace Features.Experimental.Scripts.Leaderboard
 
     public struct PointsEarnedData
     {
+        public PointsEarnedData(int pointCount) : this(Vector2.zero, pointCount)
+        {
+        }
         public PointsEarnedData(Vector2 startPosition, int pointCount)
         {
             StartPosition = startPosition;

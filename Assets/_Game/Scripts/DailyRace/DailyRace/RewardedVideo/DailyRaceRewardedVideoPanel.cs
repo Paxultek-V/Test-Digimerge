@@ -147,7 +147,6 @@ namespace Features.Leaderboard.RewardedVideo
                 previousPoints = points;
 
                 LeaderboardAccess.PointsToEarn = 0;
-            
                 LeaderboardAccess.PlayerLeaderboardScore += points; 
                 LeaderboardLogicManager.MoveToMainPlayer();
                 yield return new WaitForSeconds(2f);

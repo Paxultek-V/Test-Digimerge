@@ -36,7 +36,7 @@ namespace Features.Leaderboard.WeeklyRace
         private void OnEnable()
         {
             
-            DailyRaceEvents.ActivateEvent += Refresh;
+            DailyRaceEvents.GrantCollected += Refresh;
             DailyRaceEvents.JoinEvent += Refresh;
             DailyRaceEvents.ShowEvent += Refresh;
             Refresh();
@@ -44,7 +44,7 @@ namespace Features.Leaderboard.WeeklyRace
         
         private void OnDisable()
         {
-            DailyRaceEvents.ActivateEvent -= Refresh;
+            DailyRaceEvents.GrantCollected -= Refresh;
             DailyRaceEvents.JoinEvent -= Refresh;
             DailyRaceEvents.ShowEvent -= Refresh;
         }

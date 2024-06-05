@@ -65,9 +65,7 @@ namespace Features.Leaderboard
 
         [field: SerializeField]
         public Button CloseButton { get; private set; }
-
-        [field: SerializeField]
-        public Text NormalGameplay { get; private set; }
+        
 
         [field: SerializeField]
         public Image CloseButtonImg { get; private set; }
@@ -82,28 +80,61 @@ namespace Features.Leaderboard
             Setup();
             recyclableScrollRect.DataSource = this;
             
+            Controller_Level.OnFinishedLevel += Controller_Level_OnFinishedLevel;
+            PiggyBank.OnSendTotalMoneyCollected += PiggyBank_OnPiggyBankFinishedCollectingMoney;
+            PiggyBank.OnTargetAmountNotReached += PiggyBank_OnTargetAmountNotReached;
+            Manager_GameState.OnBroadcastGameState += OnGameStateChanged;
+            
             TodayRaceText.text = $"Daily Race";
             DailyRaceEvents.ShowEvent += Show;
-            DailyRaceEvents.ActivateEvent += Activate;
             DailyRaceEvents.JoinEvent += Join;
+            DailyRaceEvents.GrantCollected += GrantCollected;
             DailyRaceEvents.LeaderboardSetInteractableEvent += SetInteractable;
             
             CloseButton.onClick.AddListener(() => DailyRaceEvents.SendLeaderboardShowEvent(false, false));
         }
-        public void SetInteractable(bool isInteractable)
+
+        private void PiggyBank_OnTargetAmountNotReached()
+        {
+            LeaderboardAccess.PointsToEarn = 0;
+        }
+        
+        private void Controller_Level_OnFinishedLevel()
+        {
+            DailyRaceEvents.SendLeaderboardShowEvent(true, false);
+        }
+
+        private void PiggyBank_OnPiggyBankFinishedCollectingMoney(float money)
+        {
+            DailyRaceEvents.SendPointsEarnedEvent(new PointsEarnedData((int)money));
+            
+        }
+        
+        private void OnGameStateChanged(GameState obj)
+        {
+            switch (obj)
+            {
+                default:
+                    Show(false);
+                    break;
+            }
+        }
+        
+        private void SetInteractable(bool isInteractable)
         {
             canvasGroup.interactable = isInteractable;
             canvasGroup.blocksRaycasts = isInteractable;
         }
 
-
-
         private void OnDestroy()
         {
             DailyRaceEvents.ShowEvent -= Show;
-            DailyRaceEvents.ActivateEvent -= Activate;
+            DailyRaceEvents.GrantCollected -= GrantCollected;
             DailyRaceEvents.JoinEvent -= Join;
             DailyRaceEvents.LeaderboardSetInteractableEvent -= SetInteractable;
+            Controller_Level.OnFinishedLevel -= Controller_Level_OnFinishedLevel;
+            PiggyBank.OnSendTotalMoneyCollected -= PiggyBank_OnPiggyBankFinishedCollectingMoney;
+            PiggyBank.OnTargetAmountNotReached -= PiggyBank_OnTargetAmountNotReached;
         }
         
         public void Show(bool isShow, bool interactable = true)
@@ -125,17 +156,13 @@ namespace Features.Leaderboard
                 canvasSequence.Append(canvasGroup.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.InSine));
 
                 JoinedPlayersCountText.text = $"{(_sortedLeaderboardDataPlayers.Count-1)} other players in race!";
-                CloseButtonImg.enabled = true;
                 if (interactable == false)
                 {
                     canvasGroup.interactable = false;
                     canvasGroup.blocksRaycasts = false;
-                    NormalGameplay.transform.localScale = Vector3.zero;
                     // JoinedPlayersCountText.text = "Tap To Continue";
-                    CloseButtonImg.enabled = false;
+                    //CloseButtonImg.enabled = false;
                 }
-                
-                
                 
                 // canvasGroup.interactable = isInteractable;
                 // canvasGroup.blocksRaycasts = isInteractable;
@@ -173,7 +200,7 @@ namespace Features.Leaderboard
             TimeUntilResetText.text = ts.GetTimeRemainingText();
         }
 
-        private void Activate(bool isActive)
+        private void GrantCollected(bool isActive)
         {
             LeaderboardAccess.PlayerLeaderboardScore += LeaderboardAccess.PointsToEarn;
             LeaderboardAccess.PointsToEarn = 0;
