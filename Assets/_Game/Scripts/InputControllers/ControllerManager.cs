@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(MouseController)), RequireComponent(typeof(TouchController))]
 public class ControllerManager : MonoBehaviour
 {
-
+    public static bool IsInputBlocked { get; set; }
     private MouseController m_mouseController;
     private TouchController m_touchController;
 

@@ -22,7 +22,7 @@ namespace Features.Experimental.Scripts.Leaderboard
             Debug.Log("Earned Points : " + obj.PointCount);
         }
 
-        public static void SendLeaderboardActivateEvent(bool isActive)
+        public static void SendGrantEvent(bool isActive)
         {
             GrantCollected?.Invoke(isActive);
         }

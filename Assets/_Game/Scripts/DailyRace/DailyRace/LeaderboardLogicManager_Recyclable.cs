@@ -101,12 +101,13 @@ namespace Features.Leaderboard
         
         private void Controller_Level_OnFinishedLevel()
         {
-            DailyRaceEvents.SendLeaderboardShowEvent(true, false);
+            //DailyRaceEvents.SendLeaderboardShowEvent(true, false);
         }
 
         private void PiggyBank_OnPiggyBankFinishedCollectingMoney(float money)
-        {
+        {   
             DailyRaceEvents.SendPointsEarnedEvent(new PointsEarnedData((int)money));
+            DailyRaceEvents.SendGrantEvent(true);
             
         }
         

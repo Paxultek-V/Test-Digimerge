@@ -12,6 +12,7 @@ public class Button_StartGame : MonoBehaviour, IPointerDownHandler
     private void Awake()
     {
         m_button = GetComponent<Button>();
+        Manager_GameState.OnBroadcastGameState += OnGameStateChanged;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -19,6 +20,42 @@ public class Button_StartGame : MonoBehaviour, IPointerDownHandler
         if (m_button.interactable)
         {
             OnStartGameButtonPressed?.Invoke();
+            Unlock();
         }
     }
+    private void OnGameStateChanged(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.MainMenu:
+                Lock();
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private void Lock()
+    {
+        
+        m_button.enabled = true;
+        ControllerManager.IsInputBlocked = true;
+    }
+
+    private void Unlock()
+    {
+        m_button.enabled = false;
+        ControllerManager.IsInputBlocked = false;
+    }
+
+    private void OnDestroy()
+    {
+        Manager_GameState.OnBroadcastGameState -= OnGameStateChanged;
+    }
+    
+    void Start()
+    {
+        Lock();
+    }
+    
 }

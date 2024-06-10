@@ -24,8 +24,17 @@ namespace Features.Experimental.Scripts.Leaderboard
         {
             PlayerDataHolder.CreateRandomLeaderboardDataPlayers(LeagueType);
         }
-
+        
+        [ContextMenu(" Randomize Values")]
+        private void RandomizeValues()
+        {
+            foreach (var leaderboardDataPlayer in PlayerDataHolder.LeaderboardDataPlayers)
+            {
+                leaderboardDataPlayer.Points = Random.Range(0, MaxPointValue);
+            }
+        }
 #endif
+        
         public void GenerateListAccordingToPlayer()
         {
             PlayerDataHolder.CreateLeaderboardWithPlayerData(LeagueType, LeaderboardAccess.PlayerLeaderboardScore, 30);

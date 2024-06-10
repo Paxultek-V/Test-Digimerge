@@ -66,21 +66,21 @@ public class DailyRaceButton : Button
     public Sequence Move(bool moveIn)
     {
         moveSequence?.Kill();
+        jumpSequence?.Kill();
         moveSequence = DOTween.Sequence();
         var outPos = startPos + Vector2.right * (rect.rect.width + 50);
         
         if (moveIn)
         {
-            moveSequence.AppendInterval(2f);
+            moveSequence.AppendInterval(0.25f);
             moveSequence.Append(rect.DOAnchorPos(startPos, 0.75f).From(outPos).SetEase(Ease.OutBack, 1f));
             moveSequence.AppendInterval(3f);
             moveSequence.AppendCallback(() => JumpSequence(rect));
         }
         else
         {
-            moveSequence.Append(rect.DOAnchorPos(outPos, 0.75f).From(startPos).SetEase(Ease.OutBack, 1f));
+            moveSequence.Append(rect.DOAnchorPos(outPos, 0.75f).SetEase(Ease.OutBack, 1f));
             moveSequence.AppendInterval(3f);
-            moveSequence.AppendCallback(() => JumpSequence(rect));
         }
         
         

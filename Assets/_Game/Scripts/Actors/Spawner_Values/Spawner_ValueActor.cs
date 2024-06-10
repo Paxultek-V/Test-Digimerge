@@ -68,7 +68,7 @@ public class Spawner_ValueActor : MonoBehaviour
         if (m_remainingValueToSpawn < valueToSpawn)
             valueToSpawn = m_remainingValueToSpawn;
         
-        SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward,
+        SpawnValue(m_spawnPosition.transform.position, m_spawnPosition.transform.forward + Spawner_Movement_Auto.MovementDeltaDirectionEffect,
             valueToSpawn,
             1f);
 

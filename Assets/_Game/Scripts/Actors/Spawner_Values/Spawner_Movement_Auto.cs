@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Spawner_Movement_Auto : MonoBehaviour
 {
+    private static Vector3 MovementDelta;
+    public static Vector3 MovementDeltaDirectionEffect => (MovementDelta / Time.deltaTime) / 25;
+    
     [SerializeField] private Spawner_Value_SO m_spawnerData = null;
 
     public Vector3 m_desiredPosition;
@@ -43,6 +46,7 @@ public class Spawner_Movement_Auto : MonoBehaviour
         m_progressionPosition.x = Mathf.SmoothDamp(m_progressionPosition.x, m_desiredPosition.x, ref m_velocity,
             m_spawnerData.smoothTime);
         
+        MovementDelta = m_progressionPosition - transform.position;
         transform.position = m_progressionPosition;
     }
 }

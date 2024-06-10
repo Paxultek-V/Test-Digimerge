@@ -26,6 +26,8 @@ public abstract class Controller : MonoBehaviour, IController
 
     void Update()
     {
+        if (ControllerManager.IsInputBlocked) return;
+        //if (IsInputOverUI(0)) return;
         UpdateInputs();
     }
 
