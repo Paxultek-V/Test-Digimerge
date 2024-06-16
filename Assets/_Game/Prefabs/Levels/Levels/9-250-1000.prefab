@@ -6,7 +6,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 1306066641233956053, guid: e77d80f0b45d04b0398ae417dd5a3234, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76,7 +76,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 613028795613700436, guid: a5e63eaf2f0ac45b59023fbbc469f368, type: 3}
       propertyPath: m_bumpEffect.BumpValue
@@ -146,7 +146,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 613028795613700436, guid: a5e63eaf2f0ac45b59023fbbc469f368, type: 3}
       propertyPath: m_bumpEffect.BumpValue
@@ -216,7 +216,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 2308867825184306208, guid: 0ed30b35423f74fec8e97ad6c3d9810b, type: 3}
       propertyPath: m_radius
@@ -406,27 +406,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6944343005903366330, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       propertyPath: m_initialAmountToSpawn
-      value: 1
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1193231190887240430}
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4784145588445160603}
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 103472726570796975}
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8568864127518278629}
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2255769924770025092}
-    - targetCorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3432378151725820659}
     - targetCorrespondingSourceObject: {fileID: 1931910327896481483, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
@@ -437,14 +437,14 @@ PrefabInstance:
       addedObject: {fileID: 4870752475725455876}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+--- !u!4 &5887004774613768519 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2193930412545816730, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
+  m_PrefabInstance: {fileID: 5746803890521235933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6129180865167916822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1931910327896481483, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
-  m_PrefabInstance: {fileID: 5746803890521235933}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8904491189615989143 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3770537907269529674, guid: d6bf156714e1d4d36853a0c6ee35be7c, type: 3}
   m_PrefabInstance: {fileID: 5746803890521235933}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5823853196301283928
@@ -535,7 +535,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 689022530488756021, guid: 0ed30b35423f74fec8e97ad6c3d9810b, type: 3}
       propertyPath: m_text
@@ -699,7 +699,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8904491189615989143}
+    m_TransformParent: {fileID: 5887004774613768519}
     m_Modifications:
     - target: {fileID: 613028795613700436, guid: a5e63eaf2f0ac45b59023fbbc469f368, type: 3}
       propertyPath: m_bumpEffect.BumpValue
