@@ -86,6 +86,10 @@ PrefabInstance:
       propertyPath: m_startPosition.x
       value: 5.06
       objectReference: {fileID: 0}
+    - target: {fileID: 1819719342993098883, guid: bcd6f2ec5c2674016aa86c61e692c85d, type: 3}
+      propertyPath: m_initialAmountToSpawn
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1823803153911770956, guid: bcd6f2ec5c2674016aa86c61e692c85d, type: 3}
       propertyPath: m_text
       value: x2

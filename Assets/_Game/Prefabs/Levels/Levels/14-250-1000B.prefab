@@ -350,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721141319727195828, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}
       propertyPath: m_Name
-      value: 14-500-1000B
+      value: 14-250-1000B
       objectReference: {fileID: 0}
     - target: {fileID: 2149728437356954377, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}
       propertyPath: m_valueBonusList.Array.size
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2149728437356954377, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}
       propertyPath: m_valueBonusList.Array.data[0].spawnDelay
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2149728437356954377, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}
       propertyPath: m_valueBonusList.Array.data[0].valueBonus
@@ -530,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9188347681381807277, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}
       propertyPath: m_initialAmountToSpawn
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9056150015124479922, guid: 14e0035b7d9dd47b695145914e2671ad, type: 3}

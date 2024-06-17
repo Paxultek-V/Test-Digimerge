@@ -86,6 +86,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1158393009542606592, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
+      propertyPath: m_valueBonusList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1883795713804241597, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       propertyPath: m_Name
       value: 55
@@ -141,6 +145,7 @@ PrefabInstance:
     - {fileID: 9052297820611687877, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
     - {fileID: 3097252837287123376, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
     - {fileID: 7264746005863803166, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
+    - {fileID: 3840681338107707974, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2758833334712664148, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       insertIndex: -1

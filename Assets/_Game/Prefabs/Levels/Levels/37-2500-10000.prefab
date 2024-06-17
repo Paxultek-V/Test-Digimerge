@@ -265,7 +265,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 347126337399278343, guid: 5d401b2655ccc417484590372afcad1f, type: 3}
       propertyPath: m_initialAmountToSpawn
-      value: 60
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1620662855438352684, guid: 5d401b2655ccc417484590372afcad1f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -409,6 +409,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7388140377865305251, guid: 5d401b2655ccc417484590372afcad1f, type: 3}
       propertyPath: m_valueBonusList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7388140377865305251, guid: 5d401b2655ccc417484590372afcad1f, type: 3}
+      propertyPath: m_valueBonusList.Array.data[0].spawnDelay
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7388140377865305251, guid: 5d401b2655ccc417484590372afcad1f, type: 3}

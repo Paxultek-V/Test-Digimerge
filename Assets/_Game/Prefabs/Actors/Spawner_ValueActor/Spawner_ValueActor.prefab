@@ -61,7 +61,7 @@ MonoBehaviour:
   m_spawnerStats: {fileID: 5063255935173985920}
   m_valuesParent: {fileID: 0}
   m_spawnPosition: {fileID: 5364579251687678909}
-  m_initialAmountToSpawn: 50
+  m_initialAmountToSpawn: 25
 --- !u!114 &3415380459319090035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,8 +102,6 @@ MonoBehaviour:
   m_spawnerData: {fileID: 11400000, guid: ecf2ca2bee33b48d49c81f8564a00877, type: 2}
   m_desiredPosition: {x: 0, y: 0, z: 0}
   m_startPosition: {x: 0, y: 0, z: 0}
-  m_startCursorPosition: {x: 0, y: 0, z: 0}
-  m_currentCursorPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1145474817893210759
 MonoBehaviour:
   m_ObjectHideFlags: 0

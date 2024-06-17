@@ -298,19 +298,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1845923949745831151, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_text
-      value: 10000
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2187650330047100092, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_platformInitialValue
-      value: 10000
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2530169337440445463, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_platformInitialValue
-      value: 250
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2656813667780947012, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_text
-      value: 250
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2848493122841104130, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6507220031043525248, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_platformInitialValue
-      value: 250
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6529288145503281750, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_amountThresholdList.Array.data[0]
@@ -454,7 +454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6740859821620368083, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_text
-      value: 250
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7766985153971015119, guid: 7ea7a49cbe31448de83e7125f71077ef, type: 3}
       propertyPath: m_bumpEffect.BumpValue

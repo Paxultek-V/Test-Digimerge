@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 54
       objectReference: {fileID: 0}
+    - target: {fileID: 5269258028544042821, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
+      propertyPath: m_valueBonusList.Array.data[0].spawnDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8538917123185985483, guid: 0f410934c201a42fc80dad2ad33d3a3a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

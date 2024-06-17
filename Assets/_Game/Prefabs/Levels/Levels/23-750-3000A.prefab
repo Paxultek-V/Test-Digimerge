@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1883795713804241597, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       propertyPath: m_Name
-      value: Level_26
+      value: 23-750-3000A
       objectReference: {fileID: 0}
     - target: {fileID: 2758833334712664148, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8234197882717690020, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       propertyPath: m_initialAmountToSpawn
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8929723437963388058, guid: ee05cc8fd1518416fb2327f1937863a9, type: 3}
       propertyPath: m_LocalPosition.x
