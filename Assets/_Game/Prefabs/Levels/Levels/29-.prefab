@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424506063098206640, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_platformInitialValue
-      value: 5000
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1443068160858034659, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_text
-      value: 5000
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3816719776665715185, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_Name
@@ -108,7 +108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1401968957722061277, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_Name
-      value: 24-750-5000
+      value: 29-
       objectReference: {fileID: 0}
     - target: {fileID: 2886680327779151020, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5414733521355003451, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_text
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5491039961040103102, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_amountThresholdList.Array.data[0]
@@ -220,7 +220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5541377103691685480, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_platformInitialValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5810826337217971028, guid: cf9e2b40a783a475bad85f7148a0bb39, type: 3}
       propertyPath: m_AnchorMax.y
@@ -348,11 +348,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1424506063098206640, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_platformInitialValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1443068160858034659, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_text
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3816719776665715185, guid: d43d6bce390d447c092fd4e6f1ed0b99, type: 3}
       propertyPath: m_Name

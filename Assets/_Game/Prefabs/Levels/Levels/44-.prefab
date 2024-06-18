@@ -98,13 +98,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: ValueBonus
       objectReference: {fileID: 0}
+    - target: {fileID: 3960234414675091314, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4425432641298652042, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4425432641298652042, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 13.76
       objectReference: {fileID: 0}
     - target: {fileID: 4425432641298652042, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -137,6 +141,14 @@ PrefabInstance:
     - target: {fileID: 4425432641298652042, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569682911041125992, guid: 5be791daa878543dfbe6cb85789845ef, type: 3}
+      propertyPath: m_bonusDuration
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -431,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112867455906391087, guid: e6c1debcafab342cea9a9498137c407b, type: 3}
       propertyPath: m_Name
-      value: 40-30000-1000000
+      value: 44-
       objectReference: {fileID: 0}
     - target: {fileID: 329424984418402229, guid: e6c1debcafab342cea9a9498137c407b, type: 3}
       propertyPath: m_IsActive

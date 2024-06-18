@@ -1070,15 +1070,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7504271090869396257, guid: 8c0921c121d204ce3b7c46fe1fd6fa09, type: 3}
       propertyPath: m_amountThresholdList.Array.data[0]
-      value: 250
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7504271090869396257, guid: 8c0921c121d204ce3b7c46fe1fd6fa09, type: 3}
       propertyPath: m_amountThresholdList.Array.data[1]
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7504271090869396257, guid: 8c0921c121d204ce3b7c46fe1fd6fa09, type: 3}
       propertyPath: m_amountThresholdList.Array.data[2]
-      value: 5000
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
