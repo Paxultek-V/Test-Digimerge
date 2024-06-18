@@ -9,6 +9,7 @@ public class PiggyBank : MonoBehaviour
     public static Action<float> OnPiggyBankFinishedCollectingMoney;
     public static Action<int> OnGrantGemReward;
     public static Action<int> OnBroadcastStarsInfo;
+    public static Action<int> OnBroadcastTargetInfo;
     public static Action<float> OnBroadcastProgressionTowardsNextStar;
     public static Action<float> OnSendTotalMoneyCollected;
     public static Action OnTargetAmountNotReached;
@@ -53,6 +54,7 @@ public class PiggyBank : MonoBehaviour
         m_starsUnlocked = 0;
         UpdateText();
         UpdateScale();
+        CheckTargetAmountReachedCondition();
     }
 
 
@@ -100,16 +102,19 @@ public class PiggyBank : MonoBehaviour
 
     private void CheckTargetAmountReachedCondition()
     {
+        
         if (m_starsUnlocked >= m_amountThresholdList.Count)
             return;
 
 
         int starsToUnlock = DetermineStarsToUnlock();
-
+        
         for (int i = 0; i < starsToUnlock; i++)
         {
             UnlockStar();
         }
+        
+        OnBroadcastTargetInfo?.Invoke((int)m_amountThresholdList[m_starsUnlocked]);
     }
 
     private int DetermineStarsToUnlock()
@@ -121,7 +126,7 @@ public class PiggyBank : MonoBehaviour
                 return (i - m_starsUnlocked) + 1;
             }
         }
-
+        
         return 0;
     }
 

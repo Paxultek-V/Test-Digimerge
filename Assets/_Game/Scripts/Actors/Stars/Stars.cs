@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using UnityEngine.UI;
 
 public class Stars : MonoBehaviour
@@ -9,6 +10,8 @@ public class Stars : MonoBehaviour
     [SerializeField] private List<Image> m_starList = null;
 
     [SerializeField] private List<Transform> m_starShadowList = null;
+    
+    [SerializeField] private TextMeshProUGUI m_nextTargetText = null;
     
     private Image m_currentImage;
     private Tweener m_tweener;
@@ -18,13 +21,17 @@ public class Stars : MonoBehaviour
     private void OnEnable()
     {
         PiggyBank.OnBroadcastStarsInfo += OnBroadcastStarsInfo;
+        PiggyBank.OnBroadcastTargetInfo += OnBroadcastTargetInfo;
         PiggyBank.OnBroadcastProgressionTowardsNextStar += OnBroadcastProgressionTowardsNextStar;
         Manager_GameState.OnBroadcastGameState += OnBroadcastGameState;
     }
 
+   
+
     private void OnDisable()
     {
         PiggyBank.OnBroadcastStarsInfo -= OnBroadcastStarsInfo;
+        PiggyBank.OnBroadcastTargetInfo -= OnBroadcastTargetInfo;
         PiggyBank.OnBroadcastProgressionTowardsNextStar -= OnBroadcastProgressionTowardsNextStar;
         Manager_GameState.OnBroadcastGameState -= OnBroadcastGameState;
     }
@@ -79,7 +86,13 @@ public class Stars : MonoBehaviour
             UnlockStar();
         }
     }
-
+    
+    private void OnBroadcastTargetInfo(int targetValue)
+    {
+        m_nextTargetText.enabled = targetValue != 0;
+        m_nextTargetText.text = $"{targetValue.ToString()}$";
+    }
+    
     private void UnlockStar()
     {
         Image star = m_starList[m_unlockedStarsCount];
