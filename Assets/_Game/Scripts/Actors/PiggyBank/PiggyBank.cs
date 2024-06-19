@@ -102,9 +102,12 @@ public class PiggyBank : MonoBehaviour
 
     private void CheckTargetAmountReachedCondition()
     {
-        
+
         if (m_starsUnlocked >= m_amountThresholdList.Count)
+        {
+            OnBroadcastTargetInfo?.Invoke(0);
             return;
+        }
 
 
         int starsToUnlock = DetermineStarsToUnlock();

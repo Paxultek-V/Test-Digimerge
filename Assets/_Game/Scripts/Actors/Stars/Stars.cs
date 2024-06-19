@@ -11,6 +11,8 @@ public class Stars : MonoBehaviour
 
     [SerializeField] private List<Transform> m_starShadowList = null;
     
+    [SerializeField] private List<float> m_nextTargetXForStarCount = new (){0.77f,2.25f,4.24f}; //forgive me I have sinned
+    
     [SerializeField] private TextMeshProUGUI m_nextTargetText = null;
     
     private Image m_currentImage;
@@ -47,6 +49,7 @@ public class Stars : MonoBehaviour
 
         if (state == GameState.Victory || state == GameState.Gameover)
         {
+            m_nextTargetText.enabled = false;
             for (int i = 0; i < m_starShadowList.Count; i++)
             {
                 m_starShadowList[i].gameObject.SetActive(false);
@@ -91,6 +94,8 @@ public class Stars : MonoBehaviour
     {
         m_nextTargetText.enabled = targetValue != 0;
         m_nextTargetText.text = $"{targetValue.ToString()}$";
+        var rect = m_nextTargetText.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(m_nextTargetXForStarCount[m_unlockedStarsCount%3], rect.anchoredPosition.y);
     }
     
     private void UnlockStar()
