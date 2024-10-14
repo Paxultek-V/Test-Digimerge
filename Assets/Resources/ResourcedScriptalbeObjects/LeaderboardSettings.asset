@@ -22,6 +22,6 @@ MonoBehaviour:
     <CompletedCrown>k__BackingField: {fileID: 0}
     <ActiveCrown>k__BackingField: {fileID: 0}
   <LeaderboardRanks>k__BackingField:
-    gold: {fileID: 351997094, guid: 0efc76ea2239ad8408d2db98f118b3c8, type: 3}
-    silver: {fileID: 1818862609, guid: 52635526a1e9fb1449819d6708703f32, type: 3}
-    bronze: {fileID: -531591681, guid: ed8c4cdc296c54f4db582363cd21e2fa, type: 3}
+    gold: {fileID: 0}
+    silver: {fileID: 0}
+    bronze: {fileID: 0}

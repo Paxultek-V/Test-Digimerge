@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 7fe3fa154ae288614d9a33a3bc56e6dc
   appIds:
-  - 453761576997505
+  - 572322451799537
   appLabels:
   - DigiStonks
   cookie: 1

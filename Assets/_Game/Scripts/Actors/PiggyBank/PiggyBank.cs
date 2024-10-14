@@ -117,6 +117,9 @@ public class PiggyBank : MonoBehaviour
             UnlockStar();
         }
         
+        if(m_starsUnlocked >= m_amountThresholdList.Count)
+            return;
+        
         OnBroadcastTargetInfo?.Invoke((int)m_amountThresholdList[m_starsUnlocked]);
     }
 

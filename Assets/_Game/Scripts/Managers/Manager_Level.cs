@@ -7,15 +7,18 @@ using UnityEngine.Serialization;
 public class Manager_Level : MonoBehaviour
 {
     public static Action<int> OnLoadLevel;
+    public static Action<int> OnSendTotalLevelCleared;
 
     [SerializeField] private List<GameObject> m_levelPrefabList = null;
 
     [SerializeField] private Transform m_levelParent = null;
 
     [SerializeField] private string m_currentLevelIndexSaveTag = "CurrentLevelIndex";
+    [SerializeField] private string m_totalLevelClearedSaveKey = "LevelCleared";
 
     private GameObject m_currentLevel;
     private int m_currentLevelIndex;
+    private int m_totalLevelCleared;
 
 
     private void OnEnable()
@@ -44,6 +47,7 @@ public class Manager_Level : MonoBehaviour
                 break;
             case LoadLevelType.LoadNext:
                 m_currentLevelIndex++;
+                m_totalLevelCleared++;
                 CheckLevelIndexValidity();
                 LoadCurrentLevel();
                 break;
@@ -67,13 +71,19 @@ public class Manager_Level : MonoBehaviour
             case GameState.InGame:
                 break;
             case GameState.Gameover:
+                Debug.Log("YSO : gameover");
+                YsoCorp.GameUtils.YCManager.instance.OnGameFinished(false);
                 break;
             case GameState.Victory:
                 m_currentLevelIndex++;
-
+                m_totalLevelCleared++;
+                
+                Debug.Log("YSO : victory");
+                YsoCorp.GameUtils.YCManager.instance.OnGameFinished(true);
                 CheckLevelIndexValidity();
 
                 SaveCurrentLevelIndex();
+                SaveTotalLevelCleared();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(gameState), gameState, null);
@@ -96,9 +106,31 @@ public class Manager_Level : MonoBehaviour
 
         m_currentLevel = Instantiate(m_levelPrefabList[m_currentLevelIndex], m_levelParent);
         
+        // YSO SDK
+        YsoCorp.GameUtils.YCManager.instance.OnGameStarted(m_totalLevelCleared);
+        
         OnLoadLevel?.Invoke(m_currentLevelIndex);
     }
 
+    private void LoadTotalLevelCleared()
+    {
+        if (PlayerPrefs.HasKey(m_totalLevelClearedSaveKey))
+        {
+            m_totalLevelCleared = PlayerPrefs.GetInt(m_totalLevelClearedSaveKey);
+        }
+        else
+        {
+            m_totalLevelCleared = 0;
+            SaveTotalLevelCleared();
+        }
+
+        OnSendTotalLevelCleared?.Invoke(m_totalLevelCleared);
+    }
+    
+    private void SaveTotalLevelCleared()
+    {
+        PlayerPrefs.SetInt(m_totalLevelClearedSaveKey, m_totalLevelCleared);
+    }
 
     private void LoadCurrentLevelIndex()
     {
